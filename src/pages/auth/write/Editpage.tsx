@@ -5,7 +5,7 @@ const Editpage: React.FC = () => {
       <input
         placeholder="Add Title"
         type="text"
-        className="w-full text-5xl font-semibold focus:outline-none"
+        className="w-full text-5xl font-semibold focus:outline-none mb-4"
       />
       <textarea
         name="blog"
