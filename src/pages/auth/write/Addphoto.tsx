@@ -1,20 +1,24 @@
 import React, { useCallback, useState } from "react";
 import { PhotoIcon } from "@heroicons/react/24/solid";
 const Addphoto: React.FC = () => {
-  const [file, setFile] = useState<File>();
+  const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string>("");
   const handleFileChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (e.target.files) {
+      if (e.target.files && e.target.files[0].type.split("/")[0] === "image") {
         setFile(e.target.files[0]);
         setPreview(URL.createObjectURL(e.target.files[0]));
       }
     },
     []
   );
-  console.log(file);
   return (
     <div>
+      {/* image preview */}
+      <div className="min-h-[600px] mb-10">
+        {file && <img src={preview} className="max-h-[600px] mx-auto" />}
+        {!file && <PhotoIcon className="max-h-[600px] mx-auto text-zinc-500" />}
+      </div>
       {/* file upload button */}
       <div className="max-w-md mx-auto">
         <label
