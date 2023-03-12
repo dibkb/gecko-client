@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from "react";
 import Input from "../../components/Input";
 import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
+import { GithubButton, GoogleButton } from "../../components/Button";
 const Register: React.FC = () => {
   const [username, setUsername] = useState<string>("");
   const [name, setName] = useState<string>("");
@@ -51,11 +52,13 @@ const Register: React.FC = () => {
         />
         <button
           type="submit"
-          className="bg-primary text-white flex justify-center gap-4 rounded-md py-4 mt-12 hover:bg-black"
+          className="bg-primary text-white flex justify-center gap-4 rounded-md py-4 mt-8 mb-6 hover:bg-black"
         >
           <p>Create Account</p>
           <ArrowUpRightIcon className="h-6 w-6" />
         </button>
+        <GoogleButton label={"Sign In with Google"} />
+        <GithubButton label={"Sign In with Github"} />
       </form>
     </div>
   );
