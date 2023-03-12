@@ -59,13 +59,13 @@ const Addtags: React.FC = () => {
     <div>
       <h1 className="text-center text-4xl font-semibold">Add Tags</h1>
       <section className="flex flex-col mx-auto mt-24">
-        <h3 className="text-center font-medium text-md">Selected Tags</h3>
-        <main className="m-24 flex gap-x-6 gap-y-4 justify-center max-w-6xl mx-auto flex-wrap select-none">
+        <h3 className="text-center font-medium text-md">Selected Tags :</h3>
+        <main className="m-16 flex gap-x-6 gap-y-4 justify-center max-w-6xl mx-auto flex-wrap select-none">
           {selectedTagList}
         </main>
       </section>
-      <section className="flex flex-col mx-auto mt-24">
-        <h3 className="text-center font-medium text-md">Available Tags</h3>
+      <section className="flex flex-col mx-auto mt-16">
+        <h3 className="text-center font-medium text-md">Available Tags :</h3>
         <main className="mt-12 flex gap-x-6 gap-y-4 justify-center max-w-6xl mx-auto flex-wrap select-none">
           {allTagList}
         </main>

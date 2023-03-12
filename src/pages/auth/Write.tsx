@@ -1,5 +1,6 @@
 import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
 import React from "react";
+import Addphoto from "./write/Addphoto";
 import Addtags from "./write/Addtags";
 import Editpage from "./write/Editpage";
 const Write: React.FC = () => {
@@ -34,7 +35,7 @@ const Write: React.FC = () => {
   return (
     <div>
       {/* <Editpage /> */}
-      <Addtags />
+      <Addphoto />
       {buttonConainer}
     </div>
   );
