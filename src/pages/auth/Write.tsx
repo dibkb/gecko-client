@@ -5,7 +5,7 @@ import Editpage from "./write/Editpage";
 const Write: React.FC = () => {
   const nextButton = (
     <button
-      className="flex mt-24 mb-6 mx-auto border font-medium bg-primary hover:bg-black text-white rounded-md px-12 py-2
+      className="border font-medium bg-primary hover:bg-black text-white rounded-md px-12 py-2
      text-lg transition duration-300 ease-out hover:scale-105"
     >
       Next
@@ -13,13 +13,18 @@ const Write: React.FC = () => {
   );
   const prevButton = (
     <button
-      className="flex mt-24 mb-6 mx-auto border font-medium text-primary border-primary rounded-md px-12 py-2
-     text-lg transition duration-300 ease-out hover:scale-105"
+      className="border font-medium text-primary border-primary rounded-md px-12 py-2
+     text-lg hover:bg-zinc-100"
     >
       Previous
     </button>
   );
-  const buttonCona;
+  const buttonConainer = (
+    <div className=" mt-24 mb-6 flex gap-12 justify-center">
+      {prevButton}
+      {nextButton}
+    </div>
+  );
   const publishButton = (
     <button className="flex justify-center gap-2 items-center mt-24 mb-6 mx-auto border font-medium bg-primary hover:bg-black text-white rounded-md px-12 py-2 text-lg group transition duration-300 ease-out hover:scale-105">
       <p>Publish</p>
@@ -30,8 +35,7 @@ const Write: React.FC = () => {
     <div>
       {/* <Editpage /> */}
       <Addtags />
-      {publishButton}
-      {prevButton}
+      {buttonConainer}
     </div>
   );
 };
