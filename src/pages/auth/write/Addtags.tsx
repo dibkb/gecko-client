@@ -64,7 +64,7 @@ const Addtags: React.FC = () => {
           {selectedTagList}
         </main>
       </section>
-      <section className="flex flex-col mx-auto mt-16">
+      <section className="flex flex-col mx-auto mt-16 mb-24">
         <h3 className="text-center font-medium text-md">Available Tags :</h3>
         <main className="mt-12 flex gap-x-6 gap-y-4 justify-center max-w-6xl mx-auto flex-wrap select-none">
           {allTagList}

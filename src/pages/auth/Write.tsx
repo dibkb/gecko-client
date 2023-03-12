@@ -21,7 +21,7 @@ const Write: React.FC = () => {
     </button>
   );
   const buttonConainer = (
-    <div className=" mt-24 mb-6 flex gap-12 justify-center">
+    <div className=" mt-6 mb-6 flex gap-12 justify-center">
       {prevButton}
       {nextButton}
     </div>
@@ -34,8 +34,9 @@ const Write: React.FC = () => {
   );
   return (
     <div>
-      {/* <Editpage /> */}
-      <Addphoto />
+      <Editpage />
+      {/* <Addtags /> */}
+      {/* <Addphoto /> */}
       {buttonConainer}
     </div>
   );

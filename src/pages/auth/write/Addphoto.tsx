@@ -16,7 +16,9 @@ const Addphoto: React.FC = () => {
     <div>
       {/* image preview */}
       <div className="min-h-[600px] mb-10">
-        {file && <img src={preview} className="max-h-[600px] mx-auto" />}
+        {file && (
+          <img src={preview} className="max-h-[600px] mx-auto shadow-xl" />
+        )}
         {!file && <PhotoIcon className="max-h-[600px] mx-auto text-zinc-500" />}
       </div>
       {/* file upload button */}
