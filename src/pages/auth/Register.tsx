@@ -2,6 +2,7 @@ import React, { useCallback, useState } from "react";
 import Input from "../../components/Input";
 import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
 import { GithubButton, GoogleButton } from "../../components/Button";
+import { Link } from "react-router-dom";
 const Register: React.FC = () => {
   const [username, setUsername] = useState<string>("");
   const [name, setName] = useState<string>("");
@@ -59,6 +60,16 @@ const Register: React.FC = () => {
         </button>
         <GoogleButton label={"Sign In with Google"} />
         <GithubButton label={"Sign In with Github"} />
+        <Link
+          to="/auth/login"
+          className="text-sm flex gap-3 mx-auto mt-4 group"
+        >
+          <p>Already have an account</p>
+          <p className="font-semibold flex items-center gap-1 group-hover:underline decoration-solid">
+            Log In here
+            <ArrowUpRightIcon className="h-4 w-4 font-medium" />
+          </p>
+        </Link>
       </form>
     </div>
   );
