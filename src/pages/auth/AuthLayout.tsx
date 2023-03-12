@@ -7,7 +7,7 @@ const AuthLayout: React.FC = () => {
       <nav className="py-4 select-none">
         <span className="flex items-center gap-4">
           <img src={geckoLogo} alt="" />
-          <small className="font-brand text-primary tracking-brand">
+          <small className="font-brand text-primary tracking-brand md:text-lg">
             GECKO
           </small>
         </span>
