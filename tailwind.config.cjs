@@ -7,6 +7,12 @@ module.exports = {
         brand: ["Goldman", "cursive"],
         text: ["Inter", "sans-serif"],
       },
+      colors: {
+        primary: "#121927",
+      },
+      letterSpacing: {
+        brand: "1.02em",
+      },
     },
   },
   plugins: [],
