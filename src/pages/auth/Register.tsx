@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Input from "../../components/Input";
+import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
 const Register: React.FC = () => {
   const [username, setUsername] = useState<string>("");
   const [name, setName] = useState<string>("");
@@ -38,6 +39,13 @@ const Register: React.FC = () => {
           onChange={(e) => setPassword(e.target.value)}
           type={"password"}
         />
+        <button
+          type="submit"
+          className="bg-primary text-white flex justify-center gap-4 rounded-md py-4 mt-12 hover:bg-black group"
+        >
+          <p>Create Account</p>
+          <ArrowUpRightIcon className="h-6 w-6" />
+        </button>
       </form>
     </div>
   );
