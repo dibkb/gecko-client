@@ -17,7 +17,9 @@ const Register: React.FC = () => {
   return (
     <div className="mx-auto max-w-lg">
       <h1 className="text-4xl md:text-5xl font-semibold">Register</h1>
-      <p className="my-12">Using our unlimited passion for technology</p>
+      <p className="my-8 sm:my-12 text-sm sm:text-base">
+        Using our unlimited passion for technology
+      </p>
       <form
         action="submit"
         className="flex flex-col gap-y-4"
@@ -62,7 +64,7 @@ const Register: React.FC = () => {
         <GithubButton label={"Sign In with Github"} />
         <Link
           to="/auth/login"
-          className="text-sm flex gap-3 mx-auto mt-4 group"
+          className="text-sm flex gap-3 mx-auto mt-4 group mb-3"
         >
           <p>Already have an account</p>
           <p className="font-semibold flex items-center gap-1 group-hover:underline decoration-solid">
