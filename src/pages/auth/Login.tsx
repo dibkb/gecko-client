@@ -1,17 +1,25 @@
 import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
 import React, { useCallback, useState } from "react";
 import { Link } from "react-router-dom";
+import { useLoginMutation } from "../../app/auth/authApiSlice";
 import { GithubButton, GoogleButton } from "../../components/Button";
 import Input from "../../components/Input";
 const Login: React.FC = () => {
-  const loginHandler = useCallback(
-    (e: React.SyntheticEvent<HTMLFormElement>) => {
-      e.preventDefault();
-    },
-    []
-  );
-  const [email, setEmail] = useState<string>("");
+  const [login, { isLoading }] = useLoginMutation();
+  const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const loginHandler = useCallback(
+    async (e: React.SyntheticEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      try {
+        const response = await login({ username, password }).unwrap();
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    [username, password]
+  );
   return (
     <div className="mx-auto max-w-lg">
       <h1 className="text-4xl md:text-5xl font-semibold">Login</h1>
@@ -24,10 +32,10 @@ const Login: React.FC = () => {
         onSubmit={loginHandler}
       >
         <Input
-          placeholder={"Email"}
-          id={"email"}
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          placeholder={"Username"}
+          id={"username"}
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
           type={"text"}
         />
         <Input
