@@ -68,7 +68,7 @@ const Login: React.FC = () => {
           </p>
         </Link>
       </form>
-      {showModal && <MessagePortal />}
+      <MessagePortal />
     </div>
   );
 };

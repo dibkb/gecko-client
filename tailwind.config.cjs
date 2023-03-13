@@ -9,6 +9,7 @@ module.exports = {
       },
       colors: {
         primary: "#121927",
+        modalOverlay: "rgba(98, 98, 98, .72)",
       },
       letterSpacing: {
         brand: "1.02em",
