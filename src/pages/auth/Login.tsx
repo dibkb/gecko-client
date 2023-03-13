@@ -4,15 +4,18 @@ import { Link } from "react-router-dom";
 import { useLoginMutation } from "../../app/auth/authApiSlice";
 import { GithubButton, GoogleButton } from "../../components/Button";
 import Input from "../../components/Input";
+import { MessagePortal } from "../../components/Portal";
 const Login: React.FC = () => {
   const [login, { isLoading }] = useLoginMutation();
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [showModal, setShowModal] = useState<boolean>(false);
   const loginHandler = useCallback(
     async (e: React.SyntheticEvent<HTMLFormElement>) => {
       e.preventDefault();
       try {
         const response = await login({ username, password }).unwrap();
+        setShowModal(true);
         console.log(response);
       } catch (error) {
         console.log(error);
@@ -65,6 +68,7 @@ const Login: React.FC = () => {
           </p>
         </Link>
       </form>
+      {showModal && <MessagePortal />}
     </div>
   );
 };
