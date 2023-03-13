@@ -15,9 +15,7 @@ const Login: React.FC = () => {
       try {
         const response = await login({ username, password }).unwrap();
         console.log(response);
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     },
     [username, password]
   );

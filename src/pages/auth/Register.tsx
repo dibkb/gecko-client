@@ -4,28 +4,37 @@ import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
 import { GithubButton, GoogleButton } from "../../components/Button";
 import { Link } from "react-router-dom";
 import { useRegisterMutation } from "../../app/auth/authApiSlice";
-import { SuccessPortal } from "../../components/Portal";
+import { SuccessPortal, FailurePortal } from "../../components/Portal";
 const Register: React.FC = () => {
   const [register, { isLoading }] = useRegisterMutation();
+  const [error, setError] = useState<string>("");
   const [username, setUsername] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [showPortal, setShowPortal] = useState<boolean>(false);
+  const [showPortal, setShowPortal] = useState<null | "success" | "failure">(
+    null
+  );
   const createAccountandler = useCallback(
     async (e: React.SyntheticEvent<HTMLFormElement>) => {
       e.preventDefault();
       try {
-        const response = await register({ username, name, password }).unwrap();
-        setShowPortal(true);
+        await register({ username, name, password }).unwrap();
+        setShowPortal("success");
       } catch (error) {
-        console.log(error);
+        setError(error.data);
+        setShowPortal("failure");
       }
     },
     [username, password, name]
   );
   return (
     <>
-      {showPortal && <SuccessPortal setShowPortal={setShowPortal} />}
+      {showPortal === "failure" && (
+        <FailurePortal setShowPortal={setShowPortal} message={error} />
+      )}
+      {showPortal === "success" && (
+        <SuccessPortal setShowPortal={setShowPortal} />
+      )}
       <div className="mx-auto max-w-lg">
         <h1 className="text-4xl md:text-5xl font-semibold">Register</h1>
         <p className="my-8 sm:my-12 text-sm sm:text-base">
