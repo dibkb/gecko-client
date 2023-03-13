@@ -1,5 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Provider } from "react-redux";
+import { store } from "./app/store";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import Register from "./pages/auth/Register";
@@ -8,7 +10,7 @@ import AuthLayout from "./pages/auth/AuthLayout";
 import Login from "./pages/auth/Login";
 import Write from "./pages/auth/Write";
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
+  <Provider store={store}>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
@@ -20,5 +22,5 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         </Route>
       </Routes>
     </BrowserRouter>
-  </React.StrictMode>
+  </Provider>
 );
