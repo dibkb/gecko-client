@@ -3,16 +3,23 @@ import Input from "../../components/Input";
 import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
 import { GithubButton, GoogleButton } from "../../components/Button";
 import { Link } from "react-router-dom";
+import { useRegisterMutation } from "../../app/auth/authApiSlice";
 const Register: React.FC = () => {
+  const [register, { isLoading }] = useRegisterMutation();
   const [username, setUsername] = useState<string>("");
   const [name, setName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const createAccountandler = useCallback(
-    (e: React.SyntheticEvent<HTMLFormElement>) => {
+    async (e: React.SyntheticEvent<HTMLFormElement>) => {
       e.preventDefault();
+      try {
+        const response = await register({ username, name, password }).unwrap();
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
     },
-    []
+    [username, password, name]
   );
   return (
     <div className="mx-auto max-w-lg">
@@ -37,13 +44,6 @@ const Register: React.FC = () => {
           id={"name"}
           value={name}
           onChange={(e) => setName(e.target.value)}
-          type={"text"}
-        />
-        <Input
-          placeholder={"Email"}
-          id={"email"}
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
           type={"text"}
         />
         <Input
