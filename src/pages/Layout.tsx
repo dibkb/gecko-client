@@ -8,6 +8,7 @@ import React, { useState } from "react";
 import { Outlet, Link } from "react-router-dom";
 import geckoLogo from "../assets/images/gecko-logo.png";
 import { useCurrentUser } from "../hooks/useCurrentUser";
+// ----------------------------------------------------------------------------------------------
 const branding = (
   <span className="flex items-center gap-4">
     <img src={geckoLogo} alt="" className="h-10 md:h-16" />
@@ -16,6 +17,29 @@ const branding = (
     </small>
   </span>
 );
+const menuItems = (
+  <span className="sm:hidden absolute top-16 bg-white flex flex-col w-full gap-4 cursor-pointer text-sm font-medium">
+    <Link className="flex gap-1 items-center mx-auto" to="/user/write">
+      <PencilSquareIcon className="h-5 w-5 text-zinc-700" />
+      <p className="font-medium">Write</p>
+    </Link>
+    <Link
+      to="/auth/login"
+      className="text-center px-4 py-2 border border-primary rounded-md hover:bg-zinc-100"
+    >
+      Login
+    </Link>
+    <Link
+      to="/user/register"
+      className="flex items-center gap-1 bg-primary hover:bg-black
+     text-white px-4 py-2 rounded-md transition duration-200 hover:scale-105 justify-center"
+    >
+      <p>Register</p>
+      <ArrowUpRightIcon className="h-4 w-4" />
+    </Link>
+  </span>
+);
+// ----------------------------------------------------------------------------------------------
 export const AuthLayout: React.FC = () => {
   return (
     <div className="max-w-screen-2xl container mx-auto px-8 sm:px-6 lg:sm-4">
@@ -51,35 +75,13 @@ export const PublicLayout = () => {
       />
     </main>
   );
-  const menuItems = (
-    <span className="sm:hidden absolute top-16 bg-white flex flex-col w-full gap-4 cursor-pointer text-sm font-medium">
-      <Link className="flex gap-1 items-center mx-auto" to="/user/write">
-        <PencilSquareIcon className="h-5 w-5 text-zinc-700" />
-        <p className="font-medium">Write</p>
-      </Link>
-      <Link
-        to="/auth/login"
-        className="text-center px-4 py-2 border border-primary rounded-md hover:bg-zinc-100"
-      >
-        Login
-      </Link>
-      <Link
-        to="/auth/register"
-        className="flex items-center gap-1 bg-primary hover:bg-black
-       text-white px-4 py-2 rounded-md transition duration-200 hover:scale-105 justify-center"
-      >
-        <p>Register</p>
-        <ArrowUpRightIcon className="h-4 w-4" />
-      </Link>
-    </span>
-  );
   return (
     <div className="max-w-screen-2xl container mx-auto px-8 sm:px-6 lg:sm-4">
       <nav className="py-4 select-none flex items-center justify-between relative">
         {branding}
         {hamburger}
         {showMenu && menuItems}
-        <span className="hidden sm:flex items-center gap-4 cursor-pointer text-sm font-medium">
+        <span className="hidden sm:flex items-center gap-4 cursor-pointer text-xs font-semibold">
           <Link className="flex gap-1 items-center" to="/user/write">
             <PencilSquareIcon className="h-5 w-5 text-zinc-700" />
             <p className="font-medium">Write</p>
