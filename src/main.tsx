@@ -9,6 +9,7 @@ import "./index.css";
 import AuthLayout from "./pages/auth/AuthLayout";
 import Login from "./pages/auth/Login";
 import Write from "./pages/Write";
+import UserLayout from "./pages/UserLayout";
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <Provider store={store}>
     <BrowserRouter>
@@ -19,7 +20,10 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
           <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />
         </Route>
-        <Route path="write" element={<Write />} />
+        {/* User Layout */}
+        <Route path="/user" element={<UserLayout />}>
+          <Route path="write" element={<Write />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   </Provider>
