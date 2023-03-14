@@ -60,7 +60,7 @@ const Write: React.FC = () => {
       localStorage?.getItem(LOCAL_STORAGE.LOCAL_STORAGE_BLOG) as string
     )
   );
-  const [heading, setHeading] = useState<string>(
+  const [title, setTitle] = useState<string>(
     JSON.parse(
       localStorage?.getItem(LOCAL_STORAGE.LOCAL_STORAGE_HEADING) as string
     )
@@ -68,9 +68,9 @@ const Write: React.FC = () => {
   useEffect(() => {
     localStorage.setItem(
       LOCAL_STORAGE.LOCAL_STORAGE_HEADING,
-      JSON.stringify(blogContent)
+      JSON.stringify(title)
     );
-  }, [heading]);
+  }, [title]);
   useEffect(() => {
     localStorage.setItem(
       LOCAL_STORAGE.LOCAL_STORAGE_BLOG,
@@ -80,7 +80,12 @@ const Write: React.FC = () => {
   return (
     <div>
       {page === 1 && (
-        <Editpage blogContent={blogContent} setBlogContent={setBlogContent} />
+        <Editpage
+          blogContent={blogContent}
+          setBlogContent={setBlogContent}
+          title={title}
+          setTitle={setTitle}
+        />
       )}
       {page === 2 && <Addtags />}
       {page === 3 && <Addphoto />}

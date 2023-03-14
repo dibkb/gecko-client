@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
+import { LOCAL_STORAGE } from "../../../utils/localStorage";
 export interface User {
   _id: string;
   username: string;
@@ -19,7 +20,10 @@ const authSlice = createSlice({
         username,
         name,
       };
-      localStorage.setItem("geckoUser", JSON.stringify(state.user));
+      localStorage.setItem(
+        LOCAL_STORAGE.LOCAL_STORAGE_USER,
+        JSON.stringify(state.user)
+      );
     },
   },
 });

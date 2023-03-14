@@ -1,14 +1,23 @@
 import React, { useState } from "react";
 interface Editpage {
   blogContent: string;
+  title: string;
   setBlogContent: (str: string) => void;
+  setTitle: (str: string) => void;
 }
-const Editpage: React.FC<Editpage> = ({ blogContent, setBlogContent }) => {
+const Editpage: React.FC<Editpage> = ({
+  blogContent,
+  setBlogContent,
+  title,
+  setTitle,
+}) => {
   return (
     <div className="flex flex-col min-h-[700px]">
       <input
         placeholder="Add Title"
         type="text"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
         className="w-full text-5xl font-semibold focus:outline-none mb-4"
       />
       <textarea

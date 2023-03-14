@@ -16,6 +16,7 @@ const Input: React.FC<InputProps> = ({
   return (
     <div className="relative">
       <input
+        required
         id={id}
         type={type}
         className="border-2 border-gray-200 w-full rounded-md text-base outline-none
