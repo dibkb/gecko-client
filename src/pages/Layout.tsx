@@ -1,19 +1,24 @@
-import { UserCircleIcon } from "@heroicons/react/24/solid";
+import {
+  UserCircleIcon,
+  PencilSquareIcon,
+  ArrowUpRightIcon,
+} from "@heroicons/react/24/solid";
 import React from "react";
 import { Outlet } from "react-router-dom";
 import geckoLogo from "../assets/images/gecko-logo.png";
 import { useCurrentUser } from "../hooks/useCurrentUser";
+const branding = (
+  <span className="flex items-center gap-4">
+    <img src={geckoLogo} alt="" className="h-10 md:h-16" />
+    <small className="font-brand text-primary tracking-brand text-[10px] md:text-base">
+      GECKO
+    </small>
+  </span>
+);
 export const AuthLayout: React.FC = () => {
   return (
     <div className="max-w-screen-2xl container mx-auto px-8 sm:px-6 lg:sm-4">
-      <nav className="py-4 select-none">
-        <span className="flex items-center gap-4">
-          <img src={geckoLogo} alt="" />
-          <small className="font-brand text-primary tracking-brand md:text-lg">
-            GECKO
-          </small>
-        </span>
-      </nav>
+      <nav className="py-4 select-none">{branding}</nav>
       <Outlet />
     </div>
   );
@@ -23,15 +28,10 @@ export const UserLayout = () => {
   return (
     <div className="max-w-screen-2xl container mx-auto px-8 sm:px-6 lg:sm-4">
       <nav className="py-4 select-none flex items-center justify-between">
-        <span className="flex items-center gap-4">
-          <img src={geckoLogo} alt="" />
-          <small className="font-brand text-primary tracking-brand md:text-lg">
-            GECKO
-          </small>
-        </span>
-        <span className="flex items-center gap-2 cursor-pointer">
-          <UserCircleIcon className="h-8 w-8 fill-zinc-600" />
-          <p>{currUser?.name}</p>
+        {branding}
+        <span className="flex items-center gap-1 md:gap-2 cursor-pointer">
+          <UserCircleIcon className="h-6 w-6 md:h-8 md:w-8 fill-zinc-600" />
+          <p className="text-xs md:text-base">{currUser?.name}</p>
         </span>
       </nav>
       <Outlet />
@@ -42,13 +42,22 @@ export const PublicLayout = () => {
   return (
     <div className="max-w-screen-2xl container mx-auto px-8 sm:px-6 lg:sm-4">
       <nav className="py-4 select-none flex items-center justify-between">
-        <span className="flex items-center gap-4">
-          <img src={geckoLogo} alt="" />
-          <small className="font-brand text-primary tracking-brand md:text-lg">
-            GECKO
-          </small>
+        {branding}
+        <span className="flex items-center gap-8 cursor-pointer text-sm font-medium">
+          <button className="flex gap-1 items-center">
+            <PencilSquareIcon className="h-5 w-5 text-zinc-700" />
+            <p className="font-medium">Write</p>
+          </button>
+          <main className="flex gap-3">
+            <button className="px-4 py-2 border border-primary rounded-md hover:bg-zinc-100">
+              Login
+            </button>
+            <button className="flex items-center gap-1 bg-primary hover:bg-black text-white px-4 py-2 rounded-md transition duration-200 hover:scale-105">
+              <p>Register</p>
+              <ArrowUpRightIcon className="h-4 w-4" />
+            </button>
+          </main>
         </span>
-        <span className="flex items-center gap-2 cursor-pointer"></span>
       </nav>
       <Outlet />
     </div>
