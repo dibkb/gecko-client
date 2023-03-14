@@ -6,6 +6,7 @@ import Editpage from "./write/Editpage";
 import { useCurrentUser } from "../hooks/useCurrentUser";
 import { useNavigate } from "react-router-dom";
 import { LOCAL_STORAGE } from "../utils/localStorage";
+import { NextButton, PreviousButton, PublishButton } from "./write/Buttons";
 const Write: React.FC = () => {
   const [currUser] = useCurrentUser();
   const navigate = useNavigate();
@@ -15,43 +16,18 @@ const Write: React.FC = () => {
     }
   }, [currUser]);
   const [page, setPage] = useState<number>(1);
+  const decrementPage = () => {
+    setPage((prev) => prev - 1);
+  };
+  const incrementPage = () => {
+    setPage((prev) => prev + 1);
+  };
   // -------------------------------------BUTTONS--------------------------------
-  const nextButton = (
-    <button
-      onClick={() => {
-        setPage((prev) => prev + 1);
-      }}
-      className="border font-medium bg-primary hover:bg-black text-white rounded-md px-12 py-2
-     text-lg transition duration-300 ease-out hover:scale-105"
-    >
-      Next
-    </button>
-  );
-  const prevButton = (
-    <button
-      onClick={() => {
-        setPage((prev) => prev - 1);
-      }}
-      className="border font-medium text-primary border-primary rounded-md px-12 py-2
-     text-lg hover:bg-zinc-100"
-    >
-      Previous
-    </button>
-  );
-  const publishButton = (
-    <button
-      className="group flex gap-2 border font-medium bg-primary hover:bg-black text-white rounded-md px-12 py-2
-    text-lg transition duration-300 ease-out hover:scale-105"
-    >
-      <p>Publish</p>
-      <ArrowUpRightIcon className="h-6 w-6 text-white transition delay-300 duration-300 ease-out group-hover:rotate-[360deg] " />
-    </button>
-  );
   const buttonConainer = (
     <div className=" mt-6 mb-6 flex gap-12 justify-center">
-      {page !== 1 && prevButton}
-      {page !== 3 && nextButton}
-      {page === 3 && publishButton}
+      {page !== 1 && <PreviousButton onClick={decrementPage} />}
+      {page !== 3 && <NextButton onClick={incrementPage} />}
+      {page === 3 && <PublishButton />}
     </div>
   );
   // -------------------------------------------------------------------------------
