@@ -4,8 +4,14 @@ import { Link } from "react-router-dom";
 import { useLoginMutation } from "../../app/auth/authApiSlice";
 import { GithubButton, GoogleButton } from "../../components/Button";
 import Input from "../../components/Input";
-import { SuccessPortal } from "../../components/Portal";
+import {
+  setCredentials,
+  selectCurrentUser,
+} from "../../app/features/auth/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 const Login: React.FC = () => {
+  const dispatch = useDispatch();
+  const user = useSelector(selectCurrentUser);
   const [login, { isLoading }] = useLoginMutation();
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -14,13 +20,14 @@ const Login: React.FC = () => {
       e.preventDefault();
       try {
         const response = await login({ username, password }).unwrap();
-        console.log(response);
+        dispatch(setCredentials(response));
       } catch (error) {}
     },
     [username, password]
   );
   return (
     <div className="mx-auto max-w-lg">
+      {JSON.stringify(user)}
       <h1 className="text-4xl md:text-5xl font-semibold">Login</h1>
       <p className="my-8 sm:my-12 text-sm sm:text-base">
         Using our unlimited passion for technology
