@@ -1,6 +1,6 @@
 import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
 import React, { useCallback, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../../app/auth/authApiSlice";
 import { GithubButton, GoogleButton } from "../../components/Button";
 import Input from "../../components/Input";
@@ -9,7 +9,7 @@ import { useCurrentUser } from "../../hooks/useCurrentUser";
 import { useDispatch } from "react-redux";
 const Login: React.FC = () => {
   const dispatch = useDispatch();
-  const [currUser] = useCurrentUser();
+  const navigate = useNavigate();
   const [login, { isLoading }] = useLoginMutation();
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -19,6 +19,7 @@ const Login: React.FC = () => {
       try {
         const response = await login({ username, password }).unwrap();
         dispatch(setCredentials(response));
+        navigate("/");
       } catch (error) {}
     },
     [username, password]

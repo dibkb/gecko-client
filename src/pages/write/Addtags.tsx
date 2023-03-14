@@ -10,6 +10,7 @@ const Addtags: React.FC<Addtags> = ({ selectedTags, setSelectedTags }) => {
   const [showPortal, setShowPortal] = useState<boolean>(false);
   const [alltags, setAllTags] =
     useState<Record<"id" | "tag", string>[]>(tagData);
+  // ------------------------------------------------------------
   const addTagHandler = useCallback(
     (element: Record<"id" | "tag", string>) => {
       if (selectedTags.length <= 2) {
@@ -28,6 +29,7 @@ const Addtags: React.FC<Addtags> = ({ selectedTags, setSelectedTags }) => {
     },
     []
   );
+  // ------------------------------------------------------------
   const allTagList = alltags.map((element) => {
     return (
       <AvailableTags
