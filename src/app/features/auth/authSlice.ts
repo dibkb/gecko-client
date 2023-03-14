@@ -13,7 +13,13 @@ const authSlice = createSlice({
   initialState: { user: null } as AuthState,
   reducers: {
     setCredentials: (state, { payload: user }) => {
-      state.user = user;
+      const { _id, username, name } = user;
+      state.user = {
+        _id,
+        username,
+        name,
+      };
+      localStorage.setItem("geckoUser", JSON.stringify(state.user));
     },
   },
 });
