@@ -1,19 +1,29 @@
 import React, { useCallback, useState } from "react";
 import { PhotoIcon } from "@heroicons/react/24/solid";
+import { WaringPortal } from "../../components/Portal";
 const Addphoto: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string>("");
+  const [showModal, setShowModal] = useState<boolean>(false);
   const handleFileChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       if (e.target.files && e.target.files[0].type.split("/")[0] === "image") {
         setFile(e.target.files[0]);
         setPreview(URL.createObjectURL(e.target.files[0]));
+      } else {
+        setShowModal(true);
       }
     },
     []
   );
   return (
     <div>
+      {showModal && (
+        <WaringPortal
+          message={"Please select an image"}
+          setShowPortal={setShowModal}
+        />
+      )}
       {/* image preview */}
       <div className="min-h-[600px] mb-10">
         {file && (

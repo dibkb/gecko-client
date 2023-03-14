@@ -54,7 +54,7 @@ export const WaringPortal: React.FC<Portalinterface> = ({
       <div className="select-none relative bg-white shadow-2xl w-fit mx-auto px-8 py-8 rounded-md top-12 flex flex-col">
         <p className="font-medium">{message || "Waring"}</p>
         <button
-          className="px-4 py-2 rounded-md bg-amber-600 text-white mx-auto mt-10 hover:bg-amber-700"
+          className="px-4 py-2 rounded-md bg-orange-500 text-white mx-auto mt-10 hover:bg-orange-600"
           onClick={() => setShowPortal(false)}
         >
           OK
