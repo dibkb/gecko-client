@@ -1,15 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import { tagData } from "./utils/tagData";
 const App: React.FC = () => {
-  const tagList = tagData.map((element) => {
-    return (
-      <span
-        className="whitespace-nowrap cursor-pointer text-zinc-500 border-b px-2"
-        key={element.id}
-      >
-        {element.tag}
-      </span>
-    );
+  const [selectTag, setSelectTag] = useState<string>("");
+  const tagList = tagData.map(({ id, tag }) => {
+    if (selectTag === id)
+      return (
+        <span
+          className="whitespace-nowrap cursor-pointer text-primary border-b-2 border-primary px-3"
+          key={id}
+          onClick={() => setSelectTag(id)}
+        >
+          {tag}
+        </span>
+      );
+    else {
+      return (
+        <span
+          className="whitespace-nowrap cursor-pointer text-zinc-500 border-b border-zinc-200 px-3"
+          key={id}
+          onClick={() => setSelectTag(id)}
+        >
+          {tag}
+        </span>
+      );
+    }
   });
   return (
     <div className="flex flex-col">
@@ -20,7 +34,9 @@ const App: React.FC = () => {
         Thoughts and advice on experience, learning and technology.
       </p>
       <main className="hide__scrollbar">
-        <div className="w-fit mx-auto flex text-sm font-medium">{tagList}</div>
+        <div className="w-fit mx-auto flex text-sm font-semibold select-none">
+          {tagList}
+        </div>
       </main>
     </div>
   );
