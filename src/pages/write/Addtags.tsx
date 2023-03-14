@@ -1,21 +1,33 @@
 import React, { useCallback, useState } from "react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import { tagData } from "../../utils/tagData";
+import { WaringPortal } from "../../components/Portal";
 interface Addtags {
   selectedTags: Record<"id" | "tag", string>[];
   setSelectedTags: (prev: any) => void;
 }
 const Addtags: React.FC<Addtags> = ({ selectedTags, setSelectedTags }) => {
+  const [showPortal, setShowPortal] = useState<boolean>(false);
   const [alltags, setAllTags] =
     useState<Record<"id" | "tag", string>[]>(tagData);
-  const addTagHandler = useCallback((element) => {
-    setSelectedTags((prev) => [...prev, element]);
-    setAllTags((prev) => prev.filter((item) => item.id !== element.id));
-  }, []);
-  const removeTagHandler = useCallback((element) => {
-    setSelectedTags((prev) => prev.filter((item) => item.id !== element.id));
-    setAllTags((prev) => [...prev, element]);
-  }, []);
+  const addTagHandler = useCallback(
+    (element: Record<"id" | "tag", string>) => {
+      if (selectedTags.length <= 2) {
+        setSelectedTags([...selectedTags, element]);
+        setAllTags((prev) => prev.filter((item) => item.id !== element.id));
+      } else {
+        setShowPortal(true);
+      }
+    },
+    [selectedTags]
+  );
+  const removeTagHandler = useCallback(
+    (element: Record<"id" | "tag", string>) => {
+      setSelectedTags((prev) => prev.filter((item) => item.id !== element.id));
+      setAllTags((prev) => [...prev, element]);
+    },
+    []
+  );
   const allTagList = alltags.map((element) => {
     return (
       <span
@@ -46,6 +58,12 @@ const Addtags: React.FC<Addtags> = ({ selectedTags, setSelectedTags }) => {
 
   return (
     <div>
+      {showPortal && (
+        <WaringPortal
+          setShowPortal={setShowPortal}
+          message={"You can add a maximum of three tags !!!"}
+        />
+      )}
       <h1 className="text-center text-4xl font-semibold">Add Tags</h1>
       <section className="flex flex-col mx-auto mt-24">
         <h3 className="text-center font-medium text-md">Selected Tags :</h3>
