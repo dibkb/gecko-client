@@ -1,9 +1,19 @@
 import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
-import React from "react";
+import React, { useEffect } from "react";
 import Addphoto from "./write/Addphoto";
 import Addtags from "./write/Addtags";
 import Editpage from "./write/Editpage";
+import { useCurrentUser } from "../hooks/useCurrentUser";
+import { useNavigate } from "react-router-dom";
 const Write: React.FC = () => {
+  const [currUser] = useCurrentUser();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (currUser === false) {
+      return navigate("/auth/login");
+    }
+  }, [currUser]);
+
   const nextButton = (
     <button
       className="border font-medium bg-primary hover:bg-black text-white rounded-md px-12 py-2
