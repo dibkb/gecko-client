@@ -8,7 +8,7 @@ import Register from "./pages/auth/Register";
 import "./index.css";
 import AuthLayout from "./pages/auth/AuthLayout";
 import Login from "./pages/auth/Login";
-import Write from "./pages/auth/Write";
+import Write from "./pages/Write";
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <Provider store={store}>
     <BrowserRouter>
@@ -18,8 +18,8 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         <Route path="/auth" element={<AuthLayout />}>
           <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />
-          <Route path="write" element={<Write />} />
         </Route>
+        <Route path="write" element={<Write />} />
       </Routes>
     </BrowserRouter>
   </Provider>
