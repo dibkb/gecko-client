@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { tagData } from "./utils/tagData";
 const App: React.FC = () => {
-  const [selectTag, setSelectTag] = useState<string>("");
+  const [selectTag, setSelectTag] = useState<string>("1");
   const tagList = tagData.map(({ id, tag }) => {
     if (selectTag === id)
       return (

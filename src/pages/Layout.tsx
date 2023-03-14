@@ -6,20 +6,15 @@ import {
 } from "@heroicons/react/24/solid";
 import React, { useState } from "react";
 import { Outlet, Link } from "react-router-dom";
-import geckoLogo from "../assets/images/gecko-logo.png";
 import { SiPepsi } from "react-icons/si";
 import { useCurrentUser } from "../hooks/useCurrentUser";
 import { MediumIcon } from "../utils/Icons";
 // ----------------------------------------------------------------------------------------------
 const branding = (
-  <span className="flex items-center gap-4">
+  <Link className="flex items-center gap-4" to="/">
     <MediumIcon className="h-9 w-9 text-zinc-800" />
-    {/* <SiPepsi className="text-primary h-9 w-9" /> */}
-    {/* <small className="font-brand text-primary tracking-brand text-[10px] md:text-base">
-      GECKO
-    </small> */}
     <small className="font-brand_two font-medium text-2xl">Selenium</small>
-  </span>
+  </Link>
 );
 // ----------------------------------------------------------------------------------------------
 export const AuthLayout: React.FC = () => {
@@ -61,7 +56,7 @@ export const PublicLayout = () => {
     </main>
   );
   const menuItems = (
-    <span className="sm:hidden absolute top-16 right-0 bg-white flex flex-col w-full gap-4 cursor-pointer text-sm font-medium pb-4 shadow-md">
+    <span className="sm:hidden absolute top-16 right-0 bg-white flex flex-col w-full gap-4 cursor-pointer text-sm font-medium pb-4 shadow-md px-12">
       <Link className="flex gap-1 items-center mx-auto" to="/user/write">
         <PencilSquareIcon className="h-5 w-5 text-zinc-700" />
         <p className="font-medium">Write</p>
