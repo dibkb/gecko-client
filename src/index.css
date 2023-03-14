@@ -6,3 +6,14 @@
   font-family: "Inter", sans-serif;
   color: "#121927";
 }
+.hide__scrollbar::-webkit-scrollbar {
+  @apply w-full overflow-scroll;
+  display: none;
+  scroll-behavior: smooth;
+}
+.hide__scrollbar {
+  @apply w-full overflow-scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
