@@ -1,12 +1,14 @@
-import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
 import React, { useEffect, useState } from "react";
 import Addphoto from "./write/Addphoto";
 import Addtags from "./write/Addtags";
 import Editpage from "./write/Editpage";
 import { useCurrentUser } from "../hooks/useCurrentUser";
 import { useNavigate } from "react-router-dom";
-import { LOCAL_STORAGE } from "../utils/localStorage";
 import { NextButton, PreviousButton, PublishButton } from "./write/Buttons";
+import {
+  useLocalStorageBlogContent,
+  useLocalStorageTitle,
+} from "../hooks/useLocalStorage";
 const Write: React.FC = () => {
   const [currUser] = useCurrentUser();
   const navigate = useNavigate();
@@ -31,28 +33,8 @@ const Write: React.FC = () => {
     </div>
   );
   // -------------------------------------------------------------------------------
-  const [blogContent, setBlogContent] = useState<string>(
-    JSON.parse(
-      localStorage?.getItem(LOCAL_STORAGE.LOCAL_STORAGE_BLOG) as string
-    )
-  );
-  const [title, setTitle] = useState<string>(
-    JSON.parse(
-      localStorage?.getItem(LOCAL_STORAGE.LOCAL_STORAGE_HEADING) as string
-    )
-  );
-  useEffect(() => {
-    localStorage.setItem(
-      LOCAL_STORAGE.LOCAL_STORAGE_HEADING,
-      JSON.stringify(title)
-    );
-  }, [title]);
-  useEffect(() => {
-    localStorage.setItem(
-      LOCAL_STORAGE.LOCAL_STORAGE_BLOG,
-      JSON.stringify(blogContent)
-    );
-  }, [blogContent]);
+  const [title, setTitle] = useLocalStorageTitle();
+  const [blogContent, setBlogContent] = useLocalStorageBlogContent();
   return (
     <div>
       {page === 1 && (
