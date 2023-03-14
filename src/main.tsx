@@ -6,10 +6,9 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import Register from "./pages/auth/Register";
 import "./index.css";
-import AuthLayout from "./pages/auth/AuthLayout";
+import { AuthLayout, UserLayout } from "./pages/Layout";
 import Login from "./pages/auth/Login";
 import Write from "./pages/Write";
-import UserLayout from "./pages/UserLayout";
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <Provider store={store}>
     <BrowserRouter>
