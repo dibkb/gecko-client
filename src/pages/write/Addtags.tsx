@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
-import { XMarkIcon } from "@heroicons/react/24/solid";
 import { tagData } from "../../utils/tagData";
 import { WaringPortal } from "../../components/Portal";
+import { AvailableTags, SelectedTags } from "../../components/Tags";
 interface Addtags {
   selectedTags: Record<"id" | "tag", string>[];
   setSelectedTags: (prev: any) => void;
@@ -30,29 +30,20 @@ const Addtags: React.FC<Addtags> = ({ selectedTags, setSelectedTags }) => {
   );
   const allTagList = alltags.map((element) => {
     return (
-      <span
+      <AvailableTags
+        element={element}
+        addTagHandler={addTagHandler}
         key={element.id}
-        onClick={() => {
-          addTagHandler(element);
-        }}
-        className="border border-primary rounded-full px-4 py-1 cursor-pointer hover:bg-primary hover:text-white"
-      >
-        {element.tag}
-      </span>
+      />
     );
   });
   const selectedTagList = selectedTags.map((element) => {
     return (
-      <span
+      <SelectedTags
+        element={element}
+        removeTagHandler={removeTagHandler}
         key={element.id}
-        onClick={() => {
-          removeTagHandler(element);
-        }}
-        className="relative group flex items-center gap-2 bg-primary rounded-full px-8 py-2 cursor-pointer text-white shadow-md"
-      >
-        <p>{element.tag}</p>
-        <XMarkIcon className="h-6 w-6 absolute right-1 hidden group-hover:block" />
-      </span>
+      />
     );
   });
 
