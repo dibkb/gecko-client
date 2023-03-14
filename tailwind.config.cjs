@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       fontFamily: {
         brand: ["Goldman", "cursive"],
+        brand_two: ["EB Garamond", "serif"],
         text: ["Inter", "sans-serif"],
       },
       colors: {

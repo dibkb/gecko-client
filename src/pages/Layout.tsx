@@ -7,14 +7,18 @@ import {
 import React, { useState } from "react";
 import { Outlet, Link } from "react-router-dom";
 import geckoLogo from "../assets/images/gecko-logo.png";
+import { SiPepsi } from "react-icons/si";
 import { useCurrentUser } from "../hooks/useCurrentUser";
+import { MediumIcon } from "../utils/Icons";
 // ----------------------------------------------------------------------------------------------
 const branding = (
   <span className="flex items-center gap-4">
-    <img src={geckoLogo} alt="" className="h-10 md:h-16" />
-    <small className="font-brand text-primary tracking-brand text-[10px] md:text-base">
+    <MediumIcon className="h-9 w-9 text-zinc-800" />
+    {/* <SiPepsi className="text-primary h-9 w-9" /> */}
+    {/* <small className="font-brand text-primary tracking-brand text-[10px] md:text-base">
       GECKO
-    </small>
+    </small> */}
+    <small className="font-brand_two font-medium text-2xl">Selenium</small>
   </span>
 );
 // ----------------------------------------------------------------------------------------------
