@@ -5,6 +5,7 @@ import Addtags from "./write/Addtags";
 import Editpage from "./write/Editpage";
 import { useCurrentUser } from "../hooks/useCurrentUser";
 import { useNavigate } from "react-router-dom";
+import { LOCAL_STORAGE } from "../utils/localStorage";
 const Write: React.FC = () => {
   const [currUser] = useCurrentUser();
   const navigate = useNavigate();
@@ -55,10 +56,26 @@ const Write: React.FC = () => {
   );
   // -------------------------------------------------------------------------------
   const [blogContent, setBlogContent] = useState<string>(
-    JSON.parse(localStorage?.getItem("blogContent") as string)
+    JSON.parse(
+      localStorage?.getItem(LOCAL_STORAGE.LOCAL_STORAGE_BLOG) as string
+    )
+  );
+  const [heading, setHeading] = useState<string>(
+    JSON.parse(
+      localStorage?.getItem(LOCAL_STORAGE.LOCAL_STORAGE_HEADING) as string
+    )
   );
   useEffect(() => {
-    localStorage.setItem("blogContent", JSON.stringify(blogContent));
+    localStorage.setItem(
+      LOCAL_STORAGE.LOCAL_STORAGE_HEADING,
+      JSON.stringify(blogContent)
+    );
+  }, [heading]);
+  useEffect(() => {
+    localStorage.setItem(
+      LOCAL_STORAGE.LOCAL_STORAGE_BLOG,
+      JSON.stringify(blogContent)
+    );
   }, [blogContent]);
   return (
     <div>
