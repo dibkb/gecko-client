@@ -1,10 +1,5 @@
 import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
-import React, {
-  MouseEventHandler,
-  useCallback,
-  useEffect,
-  useState,
-} from "react";
+import React, { useEffect, useState } from "react";
 import Addphoto from "./write/Addphoto";
 import Addtags from "./write/Addtags";
 import Editpage from "./write/Editpage";
@@ -59,9 +54,17 @@ const Write: React.FC = () => {
     </div>
   );
   // -------------------------------------------------------------------------------
+  const [blogContent, setBlogContent] = useState<string>(
+    JSON.parse(localStorage?.getItem("blogContent") as string)
+  );
+  useEffect(() => {
+    localStorage.setItem("blogContent", JSON.stringify(blogContent));
+  }, [blogContent]);
   return (
     <div>
-      {page === 1 && <Editpage />}
+      {page === 1 && (
+        <Editpage blogContent={blogContent} setBlogContent={setBlogContent} />
+      )}
       {page === 2 && <Addtags />}
       {page === 3 && <Addphoto />}
       {buttonConainer}

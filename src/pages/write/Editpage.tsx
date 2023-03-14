@@ -1,5 +1,9 @@
-import React from "react";
-const Editpage: React.FC = () => {
+import React, { useState } from "react";
+interface Editpage {
+  blogContent: string;
+  setBlogContent: (str: string) => void;
+}
+const Editpage: React.FC<Editpage> = ({ blogContent, setBlogContent }) => {
   return (
     <div className="flex flex-col min-h-[700px]">
       <input
@@ -8,6 +12,8 @@ const Editpage: React.FC = () => {
         className="w-full text-5xl font-semibold focus:outline-none mb-4"
       />
       <textarea
+        value={blogContent}
+        onChange={(e) => setBlogContent(e.target.value)}
         name="blog"
         id="blog"
         cols={40}
