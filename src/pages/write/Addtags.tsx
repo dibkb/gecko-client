@@ -1,24 +1,13 @@
 import React, { useCallback, useState } from "react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
-const data: Record<"id" | "tag", string>[] = [
-  { id: "1", tag: "Frontend" },
-  { id: "2", tag: "Backend" },
-  { id: "3", tag: "System Design" },
-  { id: "32", tag: "Mathematics" },
-  { id: "33", tag: "Networking" },
-  { id: "4", tag: "Data Structures" },
-  { id: "61", tag: "Algorithms" },
-  { id: "62", tag: "Machine Learning" },
-  { id: "5", tag: "Data Science" },
-  { id: "6", tag: "Computer Fundamentals" },
-  { id: "34", tag: "Web Security" },
-  { id: "35", tag: "Devops" },
-];
-const Addtags: React.FC = () => {
-  const [selectedTags, setSelectedTags] = useState<
-    Record<"id" | "tag", string>[]
-  >([]);
-  const [alltags, setAllTags] = useState<Record<"id" | "tag", string>[]>(data);
+import { tagData } from "../../utils/tagData";
+interface Addtags {
+  selectedTags: Record<"id" | "tag", string>[];
+  setSelectedTags: (prev: any) => void;
+}
+const Addtags: React.FC<Addtags> = ({ selectedTags, setSelectedTags }) => {
+  const [alltags, setAllTags] =
+    useState<Record<"id" | "tag", string>[]>(tagData);
   const addTagHandler = useCallback((element) => {
     setSelectedTags((prev) => [...prev, element]);
     setAllTags((prev) => prev.filter((item) => item.id !== element.id));

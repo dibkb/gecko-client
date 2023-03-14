@@ -35,6 +35,9 @@ const Write: React.FC = () => {
   // -------------------------------------------------------------------------------
   const [title, setTitle] = useLocalStorageTitle();
   const [blogContent, setBlogContent] = useLocalStorageBlogContent();
+  const [selectedTags, setSelectedTags] = useState<
+    Record<"id" | "tag", string>[]
+  >([]);
   return (
     <div>
       {page === 1 && (
@@ -45,7 +48,12 @@ const Write: React.FC = () => {
           setTitle={setTitle}
         />
       )}
-      {page === 2 && <Addtags />}
+      {page === 2 && (
+        <Addtags
+          selectedTags={selectedTags}
+          setSelectedTags={setSelectedTags}
+        />
+      )}
       {page === 3 && <Addphoto />}
       {buttonConainer}
     </div>
