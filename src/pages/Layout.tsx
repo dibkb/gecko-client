@@ -5,7 +5,7 @@ import {
   Bars2Icon,
 } from "@heroicons/react/24/solid";
 import React, { useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 import geckoLogo from "../assets/images/gecko-logo.png";
 import { useCurrentUser } from "../hooks/useCurrentUser";
 const branding = (
@@ -52,21 +52,25 @@ export const PublicLayout = () => {
     </main>
   );
   const menuItems = (
-    <span className="absolute top-16 bg-white flex flex-col w-full gap-4 cursor-pointer text-sm font-medium">
-      <button className="flex gap-1 items-center mx-auto">
+    <span className="sm:hidden absolute top-16 bg-white flex flex-col w-full gap-4 cursor-pointer text-sm font-medium">
+      <Link className="flex gap-1 items-center mx-auto" to="/user/write">
         <PencilSquareIcon className="h-5 w-5 text-zinc-700" />
         <p className="font-medium">Write</p>
-      </button>
-      <button className="px-4 py-2 border border-primary rounded-md hover:bg-zinc-100">
+      </Link>
+      <Link
+        to="/auth/login"
+        className="text-center px-4 py-2 border border-primary rounded-md hover:bg-zinc-100"
+      >
         Login
-      </button>
-      <button
+      </Link>
+      <Link
+        to="/auth/register"
         className="flex items-center gap-1 bg-primary hover:bg-black
        text-white px-4 py-2 rounded-md transition duration-200 hover:scale-105 justify-center"
       >
         <p>Register</p>
         <ArrowUpRightIcon className="h-4 w-4" />
-      </button>
+      </Link>
     </span>
   );
   return (
@@ -74,22 +78,28 @@ export const PublicLayout = () => {
       <nav className="py-4 select-none flex items-center justify-between relative">
         {branding}
         {hamburger}
+        {showMenu && menuItems}
         <span className="hidden sm:flex items-center gap-4 cursor-pointer text-sm font-medium">
-          <button className="flex gap-1 items-center">
+          <Link className="flex gap-1 items-center" to="/user/write">
             <PencilSquareIcon className="h-5 w-5 text-zinc-700" />
             <p className="font-medium">Write</p>
-          </button>
+          </Link>
           <main className="flex gap-3">
-            <button className="px-4 py-2 border border-primary rounded-md hover:bg-zinc-100">
+            <Link
+              to="/auth/login"
+              className="px-4 py-2 border border-primary rounded-md hover:bg-zinc-100"
+            >
               Login
-            </button>
-            <button className="flex items-center gap-1 bg-primary hover:bg-black text-white px-4 py-2 rounded-md transition duration-200 hover:scale-105">
+            </Link>
+            <Link
+              to="/auth/register"
+              className="flex items-center gap-1 bg-primary hover:bg-black text-white px-4 py-2 rounded-md transition duration-200 hover:scale-105"
+            >
               <p>Register</p>
               <ArrowUpRightIcon className="h-4 w-4" />
-            </button>
+            </Link>
           </main>
         </span>
-        {showMenu && menuItems}
       </nav>
       <Outlet />
     </div>
