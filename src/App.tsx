@@ -1,28 +1,33 @@
 import React, { useState } from "react";
 import { tagData } from "./utils/tagData";
-import { useFetchBlogsQuery } from "./app/blog/blogApiSlice";
+import {
+  useFetchBlogsQuery,
+  useFetchBlogsByTagQuery,
+} from "./app/blog/blogApiSlice";
 const App: React.FC = () => {
+  const [selectTag, setSelectTag] = useState<any>(tagData[0]);
   const { data, error, isLoading } = useFetchBlogsQuery();
-  const [selectTag, setSelectTag] = useState<string>(tagData[0].id);
-  const tagList = tagData.map(({ id, tag }) => {
-    if (selectTag === id)
+  const { data: dataByTag } = useFetchBlogsByTagQuery(selectTag.tag);
+  console.log(dataByTag);
+  const tagList = tagData.map((element) => {
+    if (selectTag.id === element.id)
       return (
         <span
           className="whitespace-nowrap cursor-pointer text-primary border-b-2 border-primary px-3"
-          key={id}
-          onClick={() => setSelectTag(id)}
+          key={element.id}
+          onClick={() => setSelectTag(element)}
         >
-          {tag}
+          {element.tag}
         </span>
       );
     else {
       return (
         <span
           className="whitespace-nowrap cursor-pointer text-zinc-500 border-b border-zinc-200 px-3"
-          key={id}
-          onClick={() => setSelectTag(id)}
+          key={element.id}
+          onClick={() => setSelectTag(element)}
         >
-          {tag}
+          {element.tag}
         </span>
       );
     }
@@ -40,7 +45,7 @@ const App: React.FC = () => {
           {tagList}
         </div>
       </main>
-      {JSON.stringify(data)}
+      {JSON.stringify(dataByTag)}
     </div>
   );
 };
