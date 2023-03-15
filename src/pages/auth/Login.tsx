@@ -51,10 +51,10 @@ const Login: React.FC = () => {
         />
         <button
           type="submit"
-          className="bg-primary text-white flex justify-center gap-4 rounded-md py-4 mt-8 mb-6 hover:bg-black"
+          className="bg-primary text-white flex justify-center gap-2 sm:gap-4 rounded-md py-3 sm:py-4 mt-8 mb-6 hover:bg-black"
         >
           <p>Login</p>
-          <ArrowUpRightIcon className="h-6 w-6" />
+          <ArrowUpRightIcon className="h-5 w-5 sm:h-6 sm:w-6 self-center" />
         </button>
         <GoogleButton label={"Login with Google"} />
         <GithubButton label={"Login with Github"} />
