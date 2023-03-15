@@ -13,7 +13,7 @@ import { MediumIcon } from "../utils/Icons";
 const branding = (
   <Link className="flex items-center gap-4" to="/">
     <MediumIcon className="h-9 w-9 text-zinc-800" />
-    <small className="font-brand_two font-medium text-2xl">Selenium</small>
+    <small className="font-brand_two font-medium text-2xl">Helium</small>
   </Link>
 );
 // ----------------------------------------------------------------------------------------------
@@ -65,14 +65,14 @@ export const PublicLayout = () => {
         <>
           <Link
             to="/auth/login"
-            className="text-center px-4 py-2 border border-primary rounded-md hover:bg-zinc-100"
+            className="text-center px-4 h-10 border border-primary rounded-md hover:bg-zinc-100"
           >
-            Login
+            <p className="flex h-full items-center justify-center">Login</p>
           </Link>
           <Link
             to="/user/register"
             className="flex items-center gap-1 bg-primary hover:bg-black
-       text-white px-4 py-2 rounded-md transition duration-200 hover:scale-105 justify-center"
+       text-white px-4 h-10 rounded-md transition duration-200 hover:scale-105 justify-center"
           >
             <p>Register</p>
             <ArrowUpRightIcon className="h-4 w-4" />
