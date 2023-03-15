@@ -6,15 +6,17 @@ interface BlogContainers {
 }
 const BlogContainers: React.FC<BlogContainers> = ({ data }) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 my-6">
       {data.map((blog: Blog) => (
-        <main key={blog._id}>
-          <div className="bg-gradient-to-br aspect-video border"></div>
-          <div className="flex justify-between">
+        <main key={blog._id} className="cursor-pointer">
+          <div className="bg-gradient-to-br aspect-video border mb-4"></div>
+          <div className="flex justify-between my-3">
             <p className="text-zinc-700 font-semibold text-lg">{blog.title}</p>
             <ArrowUpRightIcon className="h-5 w-5" />
           </div>
-          <p className="line-clamp-3">{blog.content}</p>
+          <p className="line-clamp-3 text-sm text-zinc-500 font-medium">
+            {blog.content}
+          </p>
         </main>
       ))}
     </div>
