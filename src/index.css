@@ -7,13 +7,13 @@
   color: "#121927";
 }
 .hide__scrollbar::-webkit-scrollbar {
-  @apply w-full overflow-scroll mt-5;
-  display: none;
-  scroll-behavior: smooth;
+  /* visibility: hidden; */
+  opacity: 0;
 }
 .hide__scrollbar {
   @apply w-full overflow-scroll mt-5;
-  -ms-overflow-style: none;
+  /* border: 1px solid red; */
+  /* -ms-overflow-style: none;
   scrollbar-width: none;
-  scroll-behavior: smooth;
+  scroll-behavior: smooth; */
 }

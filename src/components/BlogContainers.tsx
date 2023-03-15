@@ -1,14 +1,10 @@
 import React from "react";
 import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
 import { Blog } from "../app/types";
+import { dateOptions } from "../utils/random";
 interface BlogContainers {
   data: Blog[];
 }
-const dateOptions = {
-  year: "numeric",
-  month: "short",
-  day: "numeric",
-};
 const BlogContainers: React.FC<BlogContainers> = ({ data }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 my-6">
