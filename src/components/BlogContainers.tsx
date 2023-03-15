@@ -17,6 +17,13 @@ const BlogContainers: React.FC<BlogContainers> = ({ data }) => {
           <p className="line-clamp-3 text-sm text-zinc-500 font-medium">
             {blog.content}
           </p>
+          <div className="flex gap-3 mt-4">
+            {blog.tags.map((tag) => (
+              <span className="text-sm font-semibold border border-primary rounded-full px-3">
+                {tag}
+              </span>
+            ))}
+          </div>
         </main>
       ))}
     </div>
