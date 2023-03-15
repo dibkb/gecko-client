@@ -68,7 +68,7 @@ const Register: React.FC = () => {
           />
           <button
             type="submit"
-            className="bg-primary text-white flex justify-center gap-4 rounded-md py-4 mt-8 mb-6 hover:bg-black"
+            className="bg-primary text-white flex justify-center gap-2 sm:gap-4 rounded-md py-3 sm:py-4 mt-8 mb-6 hover:bg-black"
           >
             <p>Create Account</p>
             <ArrowUpRightIcon className="h-6 w-6" />
