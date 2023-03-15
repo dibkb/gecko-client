@@ -1,14 +1,10 @@
 import React, { useState } from "react";
 import { tagData } from "./utils/tagData";
-import {
-  useFetchBlogsQuery,
-  useFetchBlogsByTagQuery,
-} from "./app/blog/blogApiSlice";
+import { useFetchBlogsByTagQuery } from "./app/blog/blogApiSlice";
+import BlogContainers from "./components/BlogContainers";
 const App: React.FC = () => {
   const [selectTag, setSelectTag] = useState<any>(tagData[0]);
-  const { data, error, isLoading } = useFetchBlogsQuery();
-  const { data: dataByTag } = useFetchBlogsByTagQuery(selectTag.tag);
-  console.log(dataByTag);
+  const { data, error, isLoading } = useFetchBlogsByTagQuery(selectTag.tag);
   const tagList = tagData.map((element) => {
     if (selectTag.id === element.id)
       return (
@@ -45,7 +41,7 @@ const App: React.FC = () => {
           {tagList}
         </div>
       </main>
-      {JSON.stringify(dataByTag)}
+      {data && <BlogContainers data={data} />}
     </div>
   );
 };
