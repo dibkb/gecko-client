@@ -1,4 +1,5 @@
 export const tagData: Record<"id" | "tag", string>[] = [
+  { id: "01", tag: "View All" },
   { id: "1", tag: "Frontend" },
   { id: "2", tag: "Backend" },
   { id: "3", tag: "System Design" },

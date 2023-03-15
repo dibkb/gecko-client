@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { tagData } from "./utils/tagData";
+import { useFetchBlogsQuery } from "./app/blog/blogApiSlice";
 const App: React.FC = () => {
-  const [selectTag, setSelectTag] = useState<string>("1");
+  const { data, error, isLoading } = useFetchBlogsQuery();
+  const [selectTag, setSelectTag] = useState<string>(tagData[0].id);
   const tagList = tagData.map(({ id, tag }) => {
     if (selectTag === id)
       return (
@@ -38,6 +40,7 @@ const App: React.FC = () => {
           {tagList}
         </div>
       </main>
+      {JSON.stringify(data)}
     </div>
   );
 };

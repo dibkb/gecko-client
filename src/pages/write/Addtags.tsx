@@ -8,8 +8,9 @@ interface Addtags {
 }
 const Addtags: React.FC<Addtags> = ({ selectedTags, setSelectedTags }) => {
   const [showPortal, setShowPortal] = useState<boolean>(false);
-  const [alltags, setAllTags] =
-    useState<Record<"id" | "tag", string>[]>(tagData);
+  const [alltags, setAllTags] = useState<Record<"id" | "tag", string>[]>(
+    tagData.slice(1)
+  );
   // ------------------------------------------------------------
   const addTagHandler = useCallback(
     (element: Record<"id" | "tag", string>) => {
