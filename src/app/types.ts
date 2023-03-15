@@ -4,6 +4,7 @@ export interface Blog {
   content: string;
   tags: string[];
   creator: string;
+  creatorName: string;
   createdAt: string;
   reaction: {
     liked: number;

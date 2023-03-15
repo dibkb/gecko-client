@@ -32,7 +32,7 @@ export const PublishButton: React.FC = () => {
     text-lg transition duration-300 ease-out hover:scale-105"
     >
       <p>Publish</p>
-      <ArrowUpRightIcon className="h-6 w-6 text-white transition delay-300 duration-300 ease-out group-hover:rotate-[360deg] " />
+      <ArrowUpRightIcon className="h-6 w-6 text-white transition duration-300 ease-out group-hover:rotate-[360deg] " />
     </button>
   );
 };
