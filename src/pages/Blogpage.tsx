@@ -29,16 +29,28 @@ const Blogpage = () => {
         className={`mx-auto aspect-video rounded-lg max-h-[500px]`}
       ></div>
       <div className="flex gap-4 justify-center mt-12">
-        <span className="flex gap-2 cursor-pointer items-center font-medium">
-          <img src={likedEmoji} alt="" />
+        <span className="flex gap-2 cursor-pointer items-center font-medium group">
+          <img
+            src={likedEmoji}
+            alt=""
+            className="group-hover:scale-125 transition duration-300 ease-out"
+          />
           <p className="">{data?.reaction.liked}</p>
         </span>
-        <span className="flex gap-2 cursor-pointer items-center font-medium">
-          <img src={lovedEmoji} alt="" />
+        <span className="flex gap-2 cursor-pointer items-center font-medium group">
+          <img
+            src={lovedEmoji}
+            alt=""
+            className="group-hover:scale-125 transition duration-300 ease-out"
+          />
           <p>{data?.reaction.loved}</p>
         </span>{" "}
-        <span className="flex gap-2 cursor-pointer items-center font-medium">
-          <img src={helpfulEmoji} alt="" />
+        <span className="flex gap-2 cursor-pointer items-center font-medium group">
+          <img
+            src={helpfulEmoji}
+            alt=""
+            className="group-hover:scale-125 transition duration-300 ease-out"
+          />
           <p>{data?.reaction.helpful}</p>
         </span>
       </div>
