@@ -9,11 +9,6 @@ interface Addphoto {
 const Addphoto: React.FC<Addphoto> = ({ setCompressedFile }) => {
   const [preview, setPreview] = useState<string>("");
   const [showModal, setShowModal] = useState<boolean>(false);
-  const compressionOptions = {
-    maxSizeMB: 1,
-    maxWidthOrHeight: 1920,
-    useWebWorker: true,
-  };
   const handleFileChange = useCallback(
     async (e: React.ChangeEvent<HTMLInputElement>) => {
       if (e.target.files && e.target.files[0].type.split("/")[0] === "image") {

@@ -10,6 +10,13 @@ export const blogApiSlice = apiSlice.injectEndpoints({
       }),
       providesTags: ["Blog"],
     }),
+    fetchBlogsById: builder.query<Blog, string | undefined>({
+      query: (id: string | undefined) => ({
+        url: `/blog/${id}`,
+        method: "GET",
+      }),
+      providesTags: ["Blog"],
+    }),
     fetchBlogsByTag: builder.query<Blog[], string>({
       query: (tag: string) => ({
         url: `/blog/filter/${tag}`,
@@ -30,5 +37,6 @@ export const blogApiSlice = apiSlice.injectEndpoints({
 export const {
   useFetchBlogsQuery,
   useFetchBlogsByTagQuery,
+  useFetchBlogsByIdQuery,
   useCreateNewBlogMutation,
 } = blogApiSlice;

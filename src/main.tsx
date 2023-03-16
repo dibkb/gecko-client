@@ -9,6 +9,7 @@ import "./index.css";
 import { AuthLayout, PublicLayout, UserLayout } from "./pages/Layout";
 import Login from "./pages/auth/Login";
 import Write from "./pages/Write";
+import Blogpage from "./pages/Blogpage";
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <Provider store={store}>
     <BrowserRouter>
@@ -16,6 +17,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         {/* public route */}
         <Route path="/" element={<PublicLayout />}>
           <Route index element={<App />} />
+          <Route path="blog/:blogId" element={<Blogpage />} />
         </Route>
         {/* Auth routes */}
         <Route path="/auth" element={<AuthLayout />}>

@@ -2,6 +2,7 @@ import React from "react";
 import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
 import { Blog } from "../app/types";
 import { dateOptions } from "../utils/random";
+import { Link } from "react-router-dom";
 interface BlogContainers {
   data: Blog[];
 }
@@ -9,7 +10,11 @@ const BlogContainers: React.FC<BlogContainers> = ({ data }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 my-6">
       {data.map((blog: Blog) => (
-        <main key={blog._id} className="cursor-pointer group">
+        <Link
+          to={`/blog/${blog._id}`}
+          key={blog._id}
+          className="cursor-pointer group"
+        >
           <div
             style={{
               backgroundImage: `url(${blog.image})`,
@@ -47,7 +52,7 @@ const BlogContainers: React.FC<BlogContainers> = ({ data }) => {
               </span>
             ))}
           </div>
-        </main>
+        </Link>
       ))}
     </div>
   );
