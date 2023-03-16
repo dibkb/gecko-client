@@ -13,7 +13,7 @@
 .hide__scrollbar {
   @apply w-full overflow-scroll mt-5;
   /* border: 1px solid red; */
-  /* -ms-overflow-style: none;
+  -ms-overflow-style: none;
   scrollbar-width: none;
-  scroll-behavior: smooth; */
+  scroll-behavior: smooth;
 }

@@ -3,6 +3,7 @@ import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
 import { Blog } from "../app/types";
 import { dateOptions } from "../utils/random";
 import { Link } from "react-router-dom";
+import { Blogtags } from "./Blogtags";
 interface BlogContainers {
   data: Blog[];
 }
@@ -42,16 +43,7 @@ const BlogContainers: React.FC<BlogContainers> = ({ data }) => {
           <p className="line-clamp-3 text-sm text-zinc-500 font-medium">
             {blog.content}
           </p>
-          <div className="flex gap-3 mt-4">
-            {blog.tags.map((tag) => (
-              <span
-                key={tag}
-                className="text-sm font-semibold border border-primary rounded-full px-3"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
+          <Blogtags tags={blog.tags} />
         </Link>
       ))}
     </div>

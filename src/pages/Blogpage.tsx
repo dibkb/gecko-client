@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useFetchBlogsByIdQuery } from "../app/blog/blogApiSlice";
 import { dateOptions } from "../utils/random";
 import { Reaction } from "../components/Reaction";
+import { Blogtags } from "../components/Blogtags";
 const Blogpage = () => {
   const { blogId } = useParams();
   const { data, error, isLoading } = useFetchBlogsByIdQuery(blogId);
@@ -17,6 +18,7 @@ const Blogpage = () => {
           {new Date(data?.createdAt).toLocaleDateString("en-us", dateOptions)}
         </p>
       </div>
+      <Blogtags tags={data?.tags} className={"justify-center my-12 gap-6"} />
       <div
         style={{
           backgroundImage: `url(${data?.image})`,
