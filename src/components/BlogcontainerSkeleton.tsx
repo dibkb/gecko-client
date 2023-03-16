@@ -22,8 +22,8 @@ const BlogSkeleton = () => {
 export const BlogcontainerSkeleton: React.FC = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 my-6">
-      {[...Array(9)].map((element) => (
-        <BlogSkeleton key={element} />
+      {[...Array(9)].map((e, i) => (
+        <BlogSkeleton key={JSON.stringify(i)} />
       ))}
     </div>
   );

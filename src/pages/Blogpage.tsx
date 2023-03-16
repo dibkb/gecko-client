@@ -5,6 +5,7 @@ import { dateOptions } from "../utils/random";
 import { Reaction } from "../components/Reaction";
 import { Blogtags } from "../components/Blogtags";
 import BlogSkeleton from "../components/BlogSkeleton";
+import Errorpage from "../components/Errorpage";
 const Blogpage = () => {
   const { blogId } = useParams();
   const { data, error, isLoading } = useFetchBlogsByIdQuery(blogId);
@@ -39,11 +40,11 @@ const Blogpage = () => {
       </div>
     </>
   );
-  console.log(error);
   return (
     <>
       {isLoading && <BlogSkeleton />}
       {data && content}
+      {error && <Errorpage />}
     </>
   );
 };
