@@ -2,8 +2,10 @@ import React, { useCallback, useState } from "react";
 import imageCompression from "browser-image-compression";
 import { PhotoIcon } from "@heroicons/react/24/solid";
 import { WaringPortal } from "../../components/Portal";
-const Addphoto: React.FC = () => {
-  const [compressedFile, setCompressedFile] = useState<File | null>(null);
+interface Addphoto {
+  setCompressedFile: (img: File) => void;
+}
+const Addphoto: React.FC<Addphoto> = ({ setCompressedFile }) => {
   const [preview, setPreview] = useState<string>("");
   const [showModal, setShowModal] = useState<boolean>(false);
   const compressionOptions = {

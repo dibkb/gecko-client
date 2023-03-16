@@ -35,9 +35,12 @@ const Write: React.FC = () => {
   // -------------------------------------------------------------------------------
   const [title, setTitle] = useLocalStorageTitle();
   const [blogContent, setBlogContent] = useLocalStorageBlogContent();
-  const [selectedTags, setSelectedTags] = useState<
-    Record<"id" | "tag", string>[]
-  >([]);
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [compressedFile, setCompressedFile] = useState<File | null>(null);
+  console.log("title", title);
+  console.log("blogContent", blogContent);
+  console.log("selectedTags", selectedTags);
+  console.log("compressedFile", compressedFile);
   return (
     <div>
       {page === 1 && (
@@ -54,7 +57,7 @@ const Write: React.FC = () => {
           setSelectedTags={setSelectedTags}
         />
       )}
-      {page === 3 && <Addphoto />}
+      {page === 3 && <Addphoto setCompressedFile={setCompressedFile} />}
       {buttonConainer}
     </div>
   );

@@ -3,40 +3,35 @@ import { tagData } from "../../utils/tagData";
 import { WaringPortal } from "../../components/Portal";
 import { AvailableTags, SelectedTags } from "../../components/Tags";
 interface Addtags {
-  selectedTags: Record<"id" | "tag", string>[];
+  selectedTags: string[];
   setSelectedTags: (prev: any) => void;
 }
 const Addtags: React.FC<Addtags> = ({ selectedTags, setSelectedTags }) => {
   const [showPortal, setShowPortal] = useState<boolean>(false);
-  const [alltags, setAllTags] = useState<Record<"id" | "tag", string>[]>(
-    tagData.slice(1)
-  );
+  const [alltags, setAllTags] = useState<string[]>(tagData.slice(1));
   // ------------------------------------------------------------
   const addTagHandler = useCallback(
-    (element: Record<"id" | "tag", string>) => {
+    (element: string) => {
       if (selectedTags.length <= 2) {
         setSelectedTags([...selectedTags, element]);
-        setAllTags((prev) => prev.filter((item) => item.id !== element.id));
+        setAllTags((prev) => prev.filter((item) => item !== element));
       } else {
         setShowPortal(true);
       }
     },
     [selectedTags]
   );
-  const removeTagHandler = useCallback(
-    (element: Record<"id" | "tag", string>) => {
-      setSelectedTags((prev) => prev.filter((item) => item.id !== element.id));
-      setAllTags((prev) => [...prev, element]);
-    },
-    []
-  );
+  const removeTagHandler = useCallback((element: string) => {
+    setSelectedTags((prev) => prev.filter((item) => item !== element));
+    setAllTags((prev) => [...prev, element]);
+  }, []);
   // ------------------------------------------------------------
   const allTagList = alltags.map((element) => {
     return (
       <AvailableTags
         element={element}
         addTagHandler={addTagHandler}
-        key={element.id}
+        key={element}
       />
     );
   });
@@ -45,7 +40,7 @@ const Addtags: React.FC<Addtags> = ({ selectedTags, setSelectedTags }) => {
       <SelectedTags
         element={element}
         removeTagHandler={removeTagHandler}
-        key={element.id}
+        key={element}
       />
     );
   });
