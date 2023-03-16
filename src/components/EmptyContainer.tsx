@@ -5,7 +5,7 @@ const EmptyContainer = () => {
   return (
     <div className="flex flex-col items-center gap-6 pb-4 select-none">
       <img src={doggy} alt="" className="h-xl w-fit" />
-      <p className="text-stone-800 text-xl">
+      <p className="text-stone-800 text-xl text-center">
         This section is empty. Maybe you can help to fill it up.
       </p>
       <WriteButton />

@@ -27,7 +27,7 @@ export const WriteButton: React.FC = () => {
 // ----------------------------------------------------------------------------------------------
 export const AuthLayout: React.FC = () => {
   return (
-    <div className="max-w-screen-2xl container mx-auto px-8 sm:px-6 lg:sm-4">
+    <div className="max-w-screen-2xl container mx-auto px-3 sm:px-6 lg:sm-4 pb-6">
       <nav className="py-4 select-none">{branding}</nav>
       <Outlet />
     </div>
@@ -36,7 +36,7 @@ export const AuthLayout: React.FC = () => {
 export const UserLayout = () => {
   const [currUser] = useCurrentUser();
   return (
-    <div className="max-w-screen-2xl container mx-auto px-8 sm:px-6 lg:sm-4">
+    <div className="max-w-screen-2xl container mx-auto px-3 sm:px-6 lg:sm-4 pb-6">
       <nav className="py-4 select-none flex items-center justify-between">
         {branding}
         {currUser && (
@@ -95,7 +95,7 @@ export const PublicLayout = () => {
     </span>
   );
   return (
-    <div className="max-w-screen-2xl container mx-auto px-8 sm:px-6 lg:sm-4">
+    <div className="max-w-screen-2xl container mx-auto px-3 sm:px-6 lg:sm-4 pb-6">
       <nav className="py-4 select-none flex items-center justify-between">
         {branding}
         {hamburger}

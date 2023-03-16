@@ -4,7 +4,7 @@ const Errorpage: React.FC = () => {
   return (
     <div className="flex flex-col items-center gap-6 pb-4 select-none">
       <img src={doggy} alt="" className="h-xl w-fit" />
-      <p className="text-stone-800 text-3xl mb-10">
+      <p className="text-stone-800 text-3xl mb-10 text-center">
         Oops... Looks like something went wrong
       </p>
       <a
