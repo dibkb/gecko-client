@@ -10,3 +10,7 @@ export const LOCAL_STORAGE: LOCAL_STORAGE = {
   LOCAL_STORAGE_USER: "GECKO_User",
   LOCAL_STORAGE_TAGS: "GECKO_Tags",
 };
+export const clearLocalStorage = () => {
+  localStorage.removeItem(LOCAL_STORAGE.LOCAL_STORAGE_BLOG);
+  localStorage.removeItem(LOCAL_STORAGE.LOCAL_STORAGE_HEADING);
+};

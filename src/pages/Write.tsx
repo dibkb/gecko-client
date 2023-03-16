@@ -10,6 +10,7 @@ import {
   useLocalStorageTitle,
 } from "../hooks/useLocalStorage";
 import { useCreateNewBlogMutation } from "../app/blog/blogApiSlice";
+import { clearLocalStorage } from "../utils/localStorage";
 const Write: React.FC = () => {
   const [createNewBlog] = useCreateNewBlogMutation();
   const [currUser] = useCurrentUser();
@@ -20,12 +21,14 @@ const Write: React.FC = () => {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [compressedFile, setCompressedFile] = useState<File | null>(null);
   const createBlogHandler = async () => {
-    createNewBlog({
+    await createNewBlog({
       title: title,
       content: blogContent,
       tags: selectedTags,
       image: compressedFile,
     });
+    clearLocalStorage();
+    navigate("/");
   };
   useEffect(() => {
     if (currUser === false) {
