@@ -16,6 +16,14 @@ const branding = (
     <small className="font-brand_two font-medium text-2xl">Helium</small>
   </Link>
 );
+export const WriteButton: React.FC = () => {
+  return (
+    <Link className="flex gap-1 items-center mx-auto" to="/user/write">
+      <PencilSquareIcon className="h-5 w-5 text-zinc-700" />
+      <p className="font-medium">Write</p>
+    </Link>
+  );
+};
 // ----------------------------------------------------------------------------------------------
 export const AuthLayout: React.FC = () => {
   return (
@@ -57,10 +65,6 @@ export const PublicLayout = () => {
   );
   const menuItems = (
     <span className="sm:hidden absolute top-16 right-0 bg-white flex flex-col w-full gap-4 cursor-pointer text-sm font-medium pb-4 shadow-md px-12">
-      <Link className="flex gap-1 items-center mx-auto" to="/user/write">
-        <PencilSquareIcon className="h-5 w-5 text-zinc-700" />
-        <p className="font-medium">Write</p>
-      </Link>
       {!currUser && (
         <>
           <Link
@@ -94,10 +98,7 @@ export const PublicLayout = () => {
         {hamburger}
         {showMenu && menuItems}
         <span className="hidden sm:flex items-center gap-4 cursor-pointer text-xs font-semibold">
-          <Link className="flex gap-1 items-center" to="/user/write">
-            <PencilSquareIcon className="h-5 w-5 text-zinc-700" />
-            <p className="font-medium">Write</p>
-          </Link>
+          <WriteButton />
           {!currUser && (
             <main className="flex gap-3">
               <Link

@@ -39,9 +39,10 @@ const Blogpage = () => {
       </div>
     </>
   );
+  console.log(error);
   return (
     <>
-      {!data && <BlogSkeleton />}
+      {isLoading && <BlogSkeleton />}
       {data && content}
     </>
   );

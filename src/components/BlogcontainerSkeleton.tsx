@@ -1,7 +1,6 @@
 import React from "react";
-
-export const BlogcontainerSkeleton: React.FC = () => {
-  const div = (
+const BlogSkeleton = () => {
+  return (
     <div>
       <div className={`aspect-video  mb-4 rounded-lg skeleton`} />
       <p className="h-2 w-1/3  skeleton rounded-md"></p>
@@ -19,9 +18,13 @@ export const BlogcontainerSkeleton: React.FC = () => {
       </span>
     </div>
   );
+};
+export const BlogcontainerSkeleton: React.FC = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 my-6">
-      {[...Array(9)].map((element) => div)}
+      {[...Array(9)].map((element) => (
+        <BlogSkeleton key={element} />
+      ))}
     </div>
   );
 };

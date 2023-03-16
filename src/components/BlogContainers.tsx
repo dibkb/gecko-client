@@ -5,11 +5,15 @@ import { dateOptions } from "../utils/random";
 import { Link } from "react-router-dom";
 import { Blogtags } from "./Blogtags";
 import { Reaction } from "./Reaction";
+import EmptyContainer from "./EmptyContainer";
 interface BlogContainers {
   data: Blog[];
 }
 const BlogContainers: React.FC<BlogContainers> = ({ data }) => {
-  return (
+  if (data.length === 0) {
+    return <EmptyContainer />;
+  }
+  const content = (
     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 my-6">
       {data.map((blog: Blog) => (
         <Link
@@ -55,6 +59,7 @@ const BlogContainers: React.FC<BlogContainers> = ({ data }) => {
       ))}
     </div>
   );
+  return content;
 };
 
 export default BlogContainers;
