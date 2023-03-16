@@ -64,7 +64,7 @@ export const PublicLayout = () => {
     </main>
   );
   const menuItems = (
-    <span className="sm:hidden absolute top-16 right-0 bg-white flex flex-col w-full gap-4 cursor-pointer text-sm font-medium pb-4 shadow-md px-12">
+    <span className="sm:hidden absolute top-16 right-0 bg-white flex flex-col w-full gap-4 cursor-pointer text-sm font-medium pb-4 border-b-2 border-stone-700 shadow-lg px-12">
       {!currUser && (
         <>
           <Link
@@ -84,10 +84,13 @@ export const PublicLayout = () => {
         </>
       )}
       {currUser && (
-        <span className="flex items-center gap-1 cursor-pointer mx-auto">
-          <UserCircleIcon className="h-6 w-6 md:h-8 md:w-8 fill-zinc-600" />
-          <p className="">{currUser?.name}</p>
-        </span>
+        <>
+          <WriteButton />
+          <span className="flex items-center gap-1 cursor-pointer mx-auto">
+            <UserCircleIcon className="h-6 w-6 md:h-8 md:w-8 fill-zinc-600" />
+            <p className="">{currUser?.name}</p>
+          </span>
+        </>
       )}
     </span>
   );
