@@ -1,15 +1,23 @@
 import React, { useCallback, useState } from "react";
+import imageCompression from "browser-image-compression";
 import { PhotoIcon } from "@heroicons/react/24/solid";
 import { WaringPortal } from "../../components/Portal";
 const Addphoto: React.FC = () => {
-  const [file, setFile] = useState<File | null>(null);
+  const [compressedFile, setCompressedFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string>("");
   const [showModal, setShowModal] = useState<boolean>(false);
+  const compressionOptions = {
+    maxSizeMB: 1,
+    maxWidthOrHeight: 1920,
+    useWebWorker: true,
+  };
   const handleFileChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
+    async (e: React.ChangeEvent<HTMLInputElement>) => {
       if (e.target.files && e.target.files[0].type.split("/")[0] === "image") {
-        setFile(e.target.files[0]);
-        setPreview(URL.createObjectURL(e.target.files[0]));
+        const image = e.target.files[0];
+        setPreview(URL.createObjectURL(image));
+        const compressImage = await imageCompression(image, compressionOptions);
+        setCompressedFile(compressImage);
       } else {
         setShowModal(true);
       }
@@ -26,10 +34,12 @@ const Addphoto: React.FC = () => {
       )}
       {/* image preview */}
       <div className="min-h-[600px] mb-10">
-        {file && (
+        {preview && (
           <img src={preview} className="max-h-[600px] mx-auto shadow-xl" />
         )}
-        {!file && <PhotoIcon className="max-h-[600px] mx-auto text-zinc-500" />}
+        {!preview && (
+          <PhotoIcon className="max-h-[600px] mx-auto text-zinc-500" />
+        )}
       </div>
       {/* file upload button */}
       <div className="max-w-md mx-auto">
