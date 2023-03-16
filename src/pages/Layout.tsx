@@ -1,12 +1,11 @@
 import {
   UserCircleIcon,
-  PencilSquareIcon,
   ArrowUpRightIcon,
   Bars2Icon,
 } from "@heroicons/react/24/solid";
 import React, { useState } from "react";
 import { Outlet, Link } from "react-router-dom";
-import { SiPepsi } from "react-icons/si";
+import { Login, Logout, Register, WriteButton } from "../components/Button";
 import { useCurrentUser } from "../hooks/useCurrentUser";
 import { MediumIcon } from "../utils/Icons";
 // ----------------------------------------------------------------------------------------------
@@ -16,17 +15,6 @@ const branding = (
     <small className="font-brand_two font-medium text-2xl">Helium</small>
   </Link>
 );
-export const WriteButton: React.FC = () => {
-  return (
-    <Link
-      className="flex gap-1 items-center mx-auto rounded-md px-3 py-2 hover:bg-stone-200"
-      to="/user/write"
-    >
-      <PencilSquareIcon className="h-5 w-5 text-zinc-700" />
-      <p className="font-medium">Write</p>
-    </Link>
-  );
-};
 // ----------------------------------------------------------------------------------------------
 export const AuthLayout: React.FC = () => {
   return (
@@ -53,7 +41,7 @@ export const UserLayout = () => {
     </div>
   );
 };
-export const PublicLayout = () => {
+export const PublicLayout: React.FC = () => {
   const [currUser] = useCurrentUser();
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const hamburger = (
@@ -70,20 +58,8 @@ export const PublicLayout = () => {
     <span className="sm:hidden absolute top-16 right-0 bg-white flex flex-col w-full gap-4 cursor-pointer text-sm font-medium pb-4 border-b-2 border-stone-700 shadow-lg px-12">
       {!currUser && (
         <>
-          <Link
-            to="/auth/login"
-            className="text-center px-4 h-10 border border-primary rounded-md hover:bg-zinc-100"
-          >
-            <p className="flex h-full items-center justify-center">Login</p>
-          </Link>
-          <Link
-            to="/user/register"
-            className="flex items-center gap-1 bg-primary hover:bg-black
-       text-white px-4 h-10 rounded-md transition duration-200 hover:scale-105 justify-center"
-          >
-            <p>Register</p>
-            <ArrowUpRightIcon className="h-4 w-4" />
-          </Link>
+          <Login />
+          <Register />
         </>
       )}
       {currUser && (
@@ -93,6 +69,7 @@ export const PublicLayout = () => {
             <UserCircleIcon className="h-6 w-6 md:h-8 md:w-8 fill-zinc-600" />
             <p className="">{currUser?.name}</p>
           </span>
+          <Logout />
         </>
       )}
     </span>
@@ -107,26 +84,18 @@ export const PublicLayout = () => {
           <WriteButton />
           {!currUser && (
             <main className="flex gap-3">
-              <Link
-                to="/auth/login"
-                className="px-4 py-2 border border-primary rounded-md hover:bg-zinc-100"
-              >
-                Login
-              </Link>
-              <Link
-                to="/auth/register"
-                className="flex items-center gap-1 bg-primary hover:bg-black text-white px-4 py-2 rounded-md transition duration-200 hover:scale-105"
-              >
-                <p>Register</p>
-                <ArrowUpRightIcon className="h-4 w-4" />
-              </Link>
+              <Login />
+              <Register />
             </main>
           )}
           {currUser && (
-            <span className="flex items-center gap-1 cursor-pointer">
-              <UserCircleIcon className="h-6 w-6 md:h-8 md:w-8 fill-zinc-600" />
-              <p className="text-xs md:text-base">{currUser?.name}</p>
-            </span>
+            <>
+              <span className="flex items-center gap-1 cursor-pointer">
+                <UserCircleIcon className="h-6 w-6 md:h-8 md:w-8 fill-zinc-600" />
+                <p className="text-xs md:text-base">{currUser?.name}</p>
+              </span>
+              <Logout />
+            </>
           )}
         </span>
       </nav>

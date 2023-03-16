@@ -1,6 +1,6 @@
 import React from "react";
 import doggy from "../assets/images/doggo-min.png";
-import { WriteButton } from "../pages/Layout";
+import { WriteButton } from "./Button";
 const EmptyContainer = () => {
   return (
     <div className="flex flex-col items-center gap-6 pb-4 select-none">
