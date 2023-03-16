@@ -17,6 +17,18 @@ export const blogApiSlice = apiSlice.injectEndpoints({
       }),
       providesTags: ["Blog"],
     }),
+    createNewBlog: builder.mutation({
+      query: (content) => ({
+        url: "/blog/create",
+        method: "POST",
+        body: content,
+      }),
+      invalidatesTags: ["Blog"],
+    }),
   }),
 });
-export const { useFetchBlogsQuery, useFetchBlogsByTagQuery } = blogApiSlice;
+export const {
+  useFetchBlogsQuery,
+  useFetchBlogsByTagQuery,
+  useCreateNewBlogMutation,
+} = blogApiSlice;
