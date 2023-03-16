@@ -11,8 +11,13 @@ const BlogContainers: React.FC<BlogContainers> = ({ data }) => {
       {data.map((blog: Blog) => (
         <main key={blog._id} className="cursor-pointer group">
           <div
-            className="bg-gradient-to-br aspect-video border mb-4 rounded-lg group-hover:bg-zinc-700 group-hover:scale-105 transition duration-300 ease-out
-           "
+            style={{
+              backgroundImage: `url(${blog.image})`,
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "center",
+              backgroundSize: "cover",
+            }}
+            className={`aspect-video border mb-4 rounded-lg group-hover:bg-zinc-700 group-hover:scale-105 transition duration-300 ease-out`}
           ></div>
           <div className="flex gap-2 text-xs font-semibold text-zinc-500">
             <p>{blog.creatorName}</p>
@@ -34,7 +39,10 @@ const BlogContainers: React.FC<BlogContainers> = ({ data }) => {
           </p>
           <div className="flex gap-3 mt-4">
             {blog.tags.map((tag) => (
-              <span className="text-sm font-semibold border border-primary rounded-full px-3">
+              <span
+                key={tag}
+                className="text-sm font-semibold border border-primary rounded-full px-3"
+              >
                 {tag}
               </span>
             ))}

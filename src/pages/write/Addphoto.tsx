@@ -1,7 +1,8 @@
 import React, { useCallback, useState } from "react";
-import imageCompression from "browser-image-compression";
 import { PhotoIcon } from "@heroicons/react/24/solid";
 import { WaringPortal } from "../../components/Portal";
+import { resizeFile } from "../../utils/imageResizer";
+
 interface Addphoto {
   setCompressedFile: (img: File) => void;
 }
@@ -18,7 +19,7 @@ const Addphoto: React.FC<Addphoto> = ({ setCompressedFile }) => {
       if (e.target.files && e.target.files[0].type.split("/")[0] === "image") {
         const image = e.target.files[0];
         setPreview(URL.createObjectURL(image));
-        const compressImage = await imageCompression(image, compressionOptions);
+        const compressImage = await resizeFile(image);
         setCompressedFile(compressImage);
       } else {
         setShowModal(true);
