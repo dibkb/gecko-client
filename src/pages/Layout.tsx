@@ -18,7 +18,10 @@ const branding = (
 );
 export const WriteButton: React.FC = () => {
   return (
-    <Link className="flex gap-1 items-center mx-auto" to="/user/write">
+    <Link
+      className="flex gap-1 items-center mx-auto rounded-md px-3 py-2 hover:bg-stone-200"
+      to="/user/write"
+    >
       <PencilSquareIcon className="h-5 w-5 text-zinc-700" />
       <p className="font-medium">Write</p>
     </Link>
