@@ -9,9 +9,24 @@ import {
   useLocalStorageBlogContent,
   useLocalStorageTitle,
 } from "../hooks/useLocalStorage";
+import { useCreateNewBlogMutation } from "../app/blog/blogApiSlice";
 const Write: React.FC = () => {
+  const [createNewBlog] = useCreateNewBlogMutation();
   const [currUser] = useCurrentUser();
   const navigate = useNavigate();
+  // -------------------------------------------------------------------------------
+  const [title, setTitle] = useLocalStorageTitle();
+  const [blogContent, setBlogContent] = useLocalStorageBlogContent();
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [compressedFile, setCompressedFile] = useState<File | null>(null);
+  const createBlogHandler = async () => {
+    createNewBlog({
+      title: title,
+      content: blogContent,
+      tags: selectedTags,
+      image: compressedFile,
+    });
+  };
   useEffect(() => {
     if (currUser === false) {
       return navigate("/auth/login");
@@ -29,15 +44,9 @@ const Write: React.FC = () => {
     <div className=" mt-6 mb-6 flex gap-12 justify-center">
       {page !== 1 && <PreviousButton onClick={decrementPage} />}
       {page !== 3 && <NextButton onClick={incrementPage} />}
-      {page === 3 && <PublishButton />}
+      {page === 3 && <PublishButton onClick={createBlogHandler} />}
     </div>
   );
-  // -------------------------------------------------------------------------------
-  const [title, setTitle] = useLocalStorageTitle();
-  const [blogContent, setBlogContent] = useLocalStorageBlogContent();
-  const [selectedTags, setSelectedTags] = useState<
-    Record<"id" | "tag", string>[]
-  >([]);
   return (
     <div>
       {page === 1 && (
@@ -54,7 +63,7 @@ const Write: React.FC = () => {
           setSelectedTags={setSelectedTags}
         />
       )}
-      {page === 3 && <Addphoto />}
+      {page === 3 && <Addphoto setCompressedFile={setCompressedFile} />}
       {buttonConainer}
     </div>
   );
