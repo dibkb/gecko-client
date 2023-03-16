@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { tagData } from "./utils/tagData";
 import { useFetchBlogsByTagQuery } from "./app/blog/blogApiSlice";
 import BlogContainers from "./components/BlogContainers";
+import { BlogcontainerSkeleton } from "./components/BlogcontainerSkeleton";
 const App: React.FC = () => {
   const [selectTag, setSelectTag] = useState<any>(tagData[0]);
   const { data, error, isLoading } = useFetchBlogsByTagQuery(selectTag);
@@ -41,6 +42,7 @@ const App: React.FC = () => {
           {tagList}
         </div>
       </main>
+      {!data && <BlogcontainerSkeleton />}
       {data && <BlogContainers data={data} />}
     </div>
   );
