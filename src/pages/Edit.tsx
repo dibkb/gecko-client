@@ -16,7 +16,7 @@ import {
 import { clearLocalStorage } from "../utils/localStorage";
 import Editphoto from "./write/Editphoto";
 import { BlogSkeleton } from "../components/BlogcontainerSkeleton";
-const Write: React.FC = () => {
+const Edit: React.FC = () => {
   const { blogId } = useParams();
   const [currUser] = useCurrentUser();
   const navigate = useNavigate();
@@ -35,6 +35,12 @@ const Write: React.FC = () => {
       setSelectedTags([]);
       setImage(data?.image);
     }
+    () => {
+      setTitle("");
+      setBlogContent("");
+      setSelectedTags([]);
+      setImage("");
+    };
   }, [data]);
   const editBlogHandler = async () => {
     await editBlog({
@@ -98,4 +104,4 @@ const Write: React.FC = () => {
     </>
   );
 };
-export default Write;
+export default Edit;

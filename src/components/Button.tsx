@@ -88,6 +88,9 @@ text-white px-4 h-10 rounded-md justify-center"
     </span>
   );
 };
+interface Button {
+  onClick: () => void;
+}
 export const EditButton: React.FC<Button> = ({ onClick }) => {
   return (
     <button
@@ -99,9 +102,7 @@ export const EditButton: React.FC<Button> = ({ onClick }) => {
     </button>
   );
 };
-interface Button {
-  onClick: () => void;
-}
+
 export const DeleteButton: React.FC<Button> = ({ onClick }) => {
   return (
     <button

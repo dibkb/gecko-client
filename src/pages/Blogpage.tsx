@@ -11,7 +11,7 @@ import { StarIcon } from "@heroicons/react/24/solid";
 import { DeleteButton, EditButton } from "../components/Button";
 import { DeleteBlog } from "../components/modals/DeleteWarning";
 import { useDeleteBlogMutation } from "../app/blog/blogApiSlice";
-const Blogpage = () => {
+const Blogpage: React.FC = () => {
   const navigate = useNavigate();
   const { blogId } = useParams();
   const [currUser] = useCurrentUser();
@@ -40,7 +40,7 @@ const Blogpage = () => {
   };
   const Buttons = () => (
     <div className="flex gap-6 justify-center mb-6">
-      <EditButton />
+      <EditButton onClick={() => navigate(`/user/edit/${data?._id}`)} />
       <DeleteButton onClick={() => setShowDeleteModal(true)} />
     </div>
   );
