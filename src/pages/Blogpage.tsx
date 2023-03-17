@@ -5,6 +5,7 @@ import { dateOptions } from "../utils/random";
 import { Reaction } from "../components/Reaction";
 import { Blogtags } from "../components/Blogtags";
 import BlogSkeleton from "../components/BlogSkeleton";
+import Errorpage from "../components/Errorpage";
 const Blogpage = () => {
   const { blogId } = useParams();
   const { data, error, isLoading } = useFetchBlogsByIdQuery(blogId);
@@ -31,14 +32,19 @@ const Blogpage = () => {
           className={`mx-auto aspect-video rounded-lg max-h-[500px]`}
         ></div>
         <p className="mt-12 leading-8">{data?.content}</p>
-        <Reaction reaction={data?.reaction} />
+        <Reaction
+          reaction={data?.reaction}
+          hover={true}
+          parentClassName={"flex gap-4 justify-center mt-12"}
+        />
       </div>
     </>
   );
   return (
     <>
-      {!data && <BlogSkeleton />}
+      {isLoading && <BlogSkeleton />}
       {data && content}
+      {error && <Errorpage />}
     </>
   );
 };

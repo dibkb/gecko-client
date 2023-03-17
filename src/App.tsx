@@ -4,6 +4,7 @@ import { useFetchBlogsByTagQuery } from "./app/blog/blogApiSlice";
 import BlogContainers from "./components/BlogContainers";
 import { BlogcontainerSkeleton } from "./components/BlogcontainerSkeleton";
 import { Banner } from "./components/Banner";
+import Errorpage from "./components/Errorpage";
 const App: React.FC = () => {
   const [selectTag, setSelectTag] = useState<any>(tagData[0]);
   const { data, error, isLoading } = useFetchBlogsByTagQuery(selectTag);
@@ -38,8 +39,9 @@ const App: React.FC = () => {
           {tagList}
         </div>
       </main>
-      {!data && <BlogcontainerSkeleton />}
+      {isLoading && <BlogcontainerSkeleton />}
       {data && <BlogContainers data={data} />}
+      {error && <Errorpage />}
     </div>
   );
 };

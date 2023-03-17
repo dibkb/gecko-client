@@ -1,14 +1,19 @@
 import React from "react";
-import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
+import { ArrowUpRightIcon, StarIcon } from "@heroicons/react/24/solid";
 import { Blog } from "../app/types";
 import { dateOptions } from "../utils/random";
 import { Link } from "react-router-dom";
 import { Blogtags } from "./Blogtags";
+import { Reaction } from "./Reaction";
+import EmptyContainer from "./EmptyContainer";
 interface BlogContainers {
   data: Blog[];
 }
 const BlogContainers: React.FC<BlogContainers> = ({ data }) => {
-  return (
+  if (data.length === 0) {
+    return <EmptyContainer />;
+  }
+  const content = (
     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 my-6">
       {data.map((blog: Blog) => (
         <Link
@@ -25,8 +30,9 @@ const BlogContainers: React.FC<BlogContainers> = ({ data }) => {
             }}
             className={`aspect-video border mb-4 rounded-lg group-hover:bg-zinc-700 group-hover:scale-105 transition duration-300 ease-out`}
           ></div>
-          <div className="flex gap-2 text-xs font-semibold text-zinc-500">
+          <div className="flex items-center gap-2 text-xs font-semibold text-zinc-500">
             <p>{blog.creatorName}</p>
+            <StarIcon className="h-2 w-2" />
             <p>
               {new Date(blog.createdAt).toLocaleDateString(
                 "en-us",
@@ -44,10 +50,16 @@ const BlogContainers: React.FC<BlogContainers> = ({ data }) => {
             {blog.content}
           </p>
           <Blogtags tags={blog.tags} />
+          <Reaction
+            reaction={blog.reaction}
+            hover={false}
+            parentClassName={"flex mt-4 gap-2"}
+          />
         </Link>
       ))}
     </div>
   );
+  return content;
 };
 
 export default BlogContainers;
