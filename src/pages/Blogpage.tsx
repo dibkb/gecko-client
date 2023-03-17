@@ -9,12 +9,17 @@ import Errorpage from "../components/Errorpage";
 import { useCurrentUser } from "../hooks/useCurrentUser";
 import { StarIcon } from "@heroicons/react/24/solid";
 import { DeleteButton, EditButton } from "../components/Button";
+import { DeleteBlog } from "../components/modals/DeleteWarning";
 const Blogpage = () => {
   const navigate = useNavigate();
   const { blogId } = useParams();
   const [currUser] = useCurrentUser();
   const { data, error, isLoading } = useFetchBlogsByIdQuery(blogId);
   const [admin, setAdmin] = useState<boolean>(false);
+  const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
+  const deletePosthandler = () => {
+    setShowDeleteModal(false);
+  };
   useEffect(() => {
     if (data?.creator.toString() === currUser?._id.toString()) {
       setAdmin(true);
@@ -32,11 +37,17 @@ const Blogpage = () => {
   const Buttons = () => (
     <div className="flex gap-6 justify-center mb-6">
       <EditButton />
-      <DeleteButton />
+      <DeleteButton onClick={() => setShowDeleteModal(true)} />
     </div>
   );
   const content = (
     <>
+      {showDeleteModal && (
+        <DeleteBlog
+          setShowPortal={setShowDeleteModal}
+          deletePosthandler={deletePosthandler}
+        />
+      )}
       <div className="my-8 md:my-24">
         <h1 className="text-center text-3xl font-semibold text-zinc-700">
           {data?.title}
