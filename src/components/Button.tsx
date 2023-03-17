@@ -1,4 +1,8 @@
-import { ArrowUpRightIcon, PencilSquareIcon } from "@heroicons/react/24/solid";
+import {
+  ArrowUpRightIcon,
+  PencilSquareIcon,
+  TrashIcon,
+} from "@heroicons/react/24/solid";
 import React from "react";
 import { AiFillGithub, AiOutlineGoogle } from "react-icons/ai";
 import { useDispatch } from "react-redux";
@@ -84,5 +88,21 @@ text-white px-4 h-10 rounded-md justify-center"
     >
       Logout
     </span>
+  );
+};
+export const EditButton: React.FC = () => {
+  return (
+    <button className="flex items-center gap-1 border px-3 py-1 rounded-md border-cyan-600 text-cyan-700 text-sm font-medium bg-cyan-50 hover:bg-cyan-100">
+      <p>Edit</p>
+      <PencilSquareIcon className="h-4 w-4" />
+    </button>
+  );
+};
+export const DeleteButton: React.FC = () => {
+  return (
+    <button className="flex items-center gap-1 border px-3 py-1 rounded-md border-rose-600 text-rose-700 text-sm font-medium bg-rose-50 hover:bg-rose-100">
+      <p>Delete</p>
+      <TrashIcon className="h-4 w-4" />
+    </button>
   );
 };

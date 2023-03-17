@@ -26,7 +26,7 @@ export const BannerAdminpage: React.FC<BannerAdminpage> = ({
         <h1 className="font-regular text-4xl min-[420px]:text-5xl min-[520px]:text-6xl sm:text-7xl md:text-8xl">
           Welcome
         </h1>
-        <h1 className="font-regular text-2xl min-[420px]:text-3xl min-[520px]:text-4xl sm:text-5xl md:text-6xl mb-2">
+        <h1 className="font-regular text-2xl min-[420px]:text-3xl min-[520px]:text-4xl sm:text-5xl md:text-6xl">
           {name}
         </h1>
       </div>

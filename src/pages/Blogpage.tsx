@@ -1,14 +1,24 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, { useCallback } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { useFetchBlogsByIdQuery } from "../app/blog/blogApiSlice";
 import { dateOptions } from "../utils/random";
 import { Reaction } from "../components/Reaction";
 import { Blogtags } from "../components/Blogtags";
 import BlogSkeleton from "../components/BlogSkeleton";
 import Errorpage from "../components/Errorpage";
+import { useCurrentUser } from "../hooks/useCurrentUser";
 const Blogpage = () => {
+  const navigate = useNavigate();
   const { blogId } = useParams();
+  const [currUser] = useCurrentUser();
   const { data, error, isLoading } = useFetchBlogsByIdQuery(blogId);
+  const authorClickHandler = useCallback(() => {
+    if (data?.creator === currUser?._id) {
+      navigate(`/user/admin/${data?.creator}`);
+    } else {
+      navigate(`/`);
+    }
+  }, [data, currUser]);
   const content = (
     <>
       <div className="my-8 md:my-24">
@@ -16,7 +26,7 @@ const Blogpage = () => {
           {data?.title}
         </h1>
         <div className="flex gap-2 text-xs font-semibold text-zinc-500 w-fit mx-auto my-12">
-          <p>{data?.creatorName}</p>
+          <p onClick={authorClickHandler}>{data?.creatorName}</p>
           <p>
             {new Date(data?.createdAt).toLocaleDateString("en-us", dateOptions)}
           </p>

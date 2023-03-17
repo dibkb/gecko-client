@@ -1,16 +1,12 @@
 import React from "react";
-import {
-  ArrowUpRightIcon,
-  StarIcon,
-  PencilIcon,
-  TrashIcon,
-} from "@heroicons/react/24/solid";
+import { ArrowUpRightIcon, StarIcon } from "@heroicons/react/24/solid";
 import { Blog } from "../app/types";
 import { dateOptions } from "../utils/random";
 import { Link } from "react-router-dom";
 import { Blogtags } from "./Blogtags";
 import { Reaction } from "./Reaction";
 import EmptyContainer from "./EmptyContainer";
+import { DeleteButton, EditButton } from "./Button";
 interface BlogContainers {
   data: Blog[];
 }
@@ -21,7 +17,7 @@ const BlogContainerAdmin: React.FC<BlogContainers> = ({ data }) => {
   const content = (
     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 my-6">
       {data.map((blog: Blog) => (
-        <>
+        <div>
           <Link
             to={`/blog/${blog._id}`}
             key={blog._id}
@@ -62,17 +58,11 @@ const BlogContainerAdmin: React.FC<BlogContainers> = ({ data }) => {
               parentClassName={"flex mt-4 gap-2"}
             />
           </Link>
-          <div className="flex gap-4">
-            <button className="flex items-center gap-1 border px-3 py-1 rounded-md border-cyan-600 text-cyan-700 text-sm font-medium bg-cyan-50 hover:bg-cyan-100">
-              <p>Edit</p>
-              <PencilIcon className="h-4 w-4" />
-            </button>
-            <button className="flex items-center gap-1 border px-3 py-1 rounded-md border-rose-600 text-rose-700 text-sm font-medium bg-rose-50 hover:bg-rose-100">
-              <p>Delete</p>
-              <TrashIcon className="h-4 w-4" />
-            </button>
+          <div className="flex gap-4 mt-5">
+            <EditButton />
+            <DeleteButton />
           </div>
-        </>
+        </div>
       ))}
     </div>
   );
