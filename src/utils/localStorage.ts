@@ -14,3 +14,6 @@ export const clearLocalStorage = () => {
   localStorage.removeItem(LOCAL_STORAGE.LOCAL_STORAGE_BLOG);
   localStorage.removeItem(LOCAL_STORAGE.LOCAL_STORAGE_HEADING);
 };
+export const clearLocalUser = () => {
+  localStorage.removeItem(LOCAL_STORAGE.LOCAL_STORAGE_USER);
+};

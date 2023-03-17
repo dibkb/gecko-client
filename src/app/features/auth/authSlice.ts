@@ -9,6 +9,9 @@ export interface User {
 type AuthState = {
   user: User | null;
 };
+// const user = localStorage.getItem(LOCAL_STORAGE.LOCAL_STORAGE_USER)
+//   ? localStorage.getItem(LOCAL_STORAGE.LOCAL_STORAGE_USER)
+//   : null;
 const authSlice = createSlice({
   name: "auth",
   initialState: { user: null } as AuthState,
@@ -25,8 +28,12 @@ const authSlice = createSlice({
         JSON.stringify(state.user)
       );
     },
+    setLogout: (state) => {
+      state.user = null;
+      localStorage.removeItem(LOCAL_STORAGE.LOCAL_STORAGE_USER);
+    },
   },
 });
-export const { setCredentials } = authSlice.actions;
+export const { setCredentials, setLogout } = authSlice.actions;
 export default authSlice.reducer;
 export const selectCurrentUser = (state: RootState) => state.auth.user;

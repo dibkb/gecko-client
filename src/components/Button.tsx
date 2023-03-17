@@ -1,11 +1,10 @@
-import {
-  ArrowUpRightIcon,
-  PencilSquareIcon,
-  ArrowUpLeftIcon,
-} from "@heroicons/react/24/solid";
+import { ArrowUpRightIcon, PencilSquareIcon } from "@heroicons/react/24/solid";
 import React from "react";
 import { AiFillGithub, AiOutlineGoogle } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useSendLogoutMutation } from "../app/auth/authApiSlice";
+import { setLogout } from "../app/features/auth/authSlice";
 interface ButtonProps {
   label: string;
 }
@@ -69,8 +68,17 @@ text-white px-4 h-10 rounded-md transition duration-200 hover:scale-105 justify-
   );
 };
 export const Logout: React.FC = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [sendLogout, { isLoading }] = useSendLogoutMutation();
   return (
     <span
+      onClick={async () => {
+        await sendLogout();
+        dispatch(setLogout());
+        window.location.reload();
+        navigate("/");
+      }}
       className="flex items-center gap-1 bg-neutral-800 hover:bg-neutral-900
 text-white px-4 h-10 rounded-md justify-center"
     >
