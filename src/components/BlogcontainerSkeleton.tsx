@@ -1,5 +1,5 @@
 import React from "react";
-const BlogSkeleton = () => {
+export const BlogSkeleton = () => {
   return (
     <div>
       <div className={`aspect-video  mb-4 rounded-lg skeleton`} />

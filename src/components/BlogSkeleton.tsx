@@ -1,5 +1,7 @@
 import React from "react";
-const TextSkeleton = () => <p className="w-full h-4 rounded-md skeleton"></p>;
+export const TextSkeleton = () => (
+  <p className="w-full h-4 rounded-md skeleton"></p>
+);
 const BlogSkeleton: React.FC = () => {
   return (
     <div className="my-8 md:my-24">

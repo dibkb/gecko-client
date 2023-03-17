@@ -3,11 +3,13 @@ import { useParams } from "react-router-dom";
 import { useFetchBlogsByUserAdminQuery } from "../app/blog/blogApiSlice";
 import { BannerAdminpage } from "../components/Banner";
 import BlogContainerAdmin from "../components/BlogContainerAdmin";
+import Profileskeleton from "../components/Profileskeleton";
 const Adminpage: React.FC = () => {
   const { userId } = useParams();
   const { data, error, isLoading } = useFetchBlogsByUserAdminQuery(userId);
   return (
-    <div>
+    <>
+      {isLoading && <Profileskeleton />}
       {data && (
         <>
           <BannerAdminpage
@@ -17,7 +19,7 @@ const Adminpage: React.FC = () => {
           <BlogContainerAdmin data={data.blogs} />
         </>
       )}
-    </div>
+    </>
   );
 };
 

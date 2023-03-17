@@ -22,13 +22,13 @@ const Blogpage = () => {
       setAdmin(false);
     }
   }, [data, currUser]);
-  const authorClickHandler = useCallback(() => {
+  const authorClickHandler = () => {
     if (admin) {
       navigate(`/user/admin/${data?.creator}`);
     } else {
       navigate(`/user/${data?.creator}`);
     }
-  }, [admin]);
+  };
   const Buttons = () => (
     <div className="flex gap-6 justify-center mb-6">
       <EditButton />
