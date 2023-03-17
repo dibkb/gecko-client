@@ -25,11 +25,12 @@ const Blogpage: React.FC = () => {
     navigate("/");
   };
   useEffect(() => {
-    if (data?.creator.toString() === currUser?._id.toString()) {
-      setAdmin(true);
-    } else {
-      setAdmin(false);
-    }
+    if (data)
+      if (data?.creator === currUser?._id) {
+        setAdmin(true);
+      } else {
+        setAdmin(false);
+      }
   }, [data, currUser]);
   const authorClickHandler = () => {
     if (admin) {
@@ -38,7 +39,7 @@ const Blogpage: React.FC = () => {
       navigate(`/user/${data?.creator}`);
     }
   };
-  const Buttons = () => (
+  const Buttons: React.FC = () => (
     <div className="flex gap-6 justify-center mb-6">
       <EditButton onClick={() => navigate(`/user/edit/${data?._id}`)} />
       <DeleteButton onClick={() => setShowDeleteModal(true)} />
