@@ -7,6 +7,7 @@ import { Blogtags } from "../components/Blogtags";
 import BlogSkeleton from "../components/BlogSkeleton";
 import Errorpage from "../components/Errorpage";
 import { useCurrentUser } from "../hooks/useCurrentUser";
+import { StarIcon } from "@heroicons/react/24/solid";
 const Blogpage = () => {
   const navigate = useNavigate();
   const { blogId } = useParams();
@@ -25,8 +26,14 @@ const Blogpage = () => {
         <h1 className="text-center text-3xl font-semibold text-zinc-700">
           {data?.title}
         </h1>
-        <div className="flex gap-2 text-xs font-semibold text-zinc-500 w-fit mx-auto my-12">
-          <p onClick={authorClickHandler}>{data?.creatorName}</p>
+        <div className="flex items-center gap-2 text-sm font-semibold text-zinc-500 w-fit mx-auto my-12">
+          <p
+            onClick={authorClickHandler}
+            className="cursor-pointer hover:text-stone-800 hover:underline "
+          >
+            {data?.creatorName}
+          </p>
+          <StarIcon className="h-2 w-2" />
           <p>
             {new Date(data?.createdAt).toLocaleDateString("en-us", dateOptions)}
           </p>
