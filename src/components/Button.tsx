@@ -98,7 +98,7 @@ export const EditButton: React.FC = () => {
 };
 export const DeleteButton: React.FC = () => {
   return (
-    <button className="flex items-center gap-1 px-3 py-1 rounded-md text-rose-700 text-sm font-semibold bg-rose-50 hover:bg-rose-100">
+    <button className="flex items-center gap-1 px-3 py-1 rounded-md text-red-700 text-sm font-semibold bg-red-50 hover:bg-red-100">
       <p>Delete</p>
       <TrashIcon className="h-4 w-4" />
     </button>
