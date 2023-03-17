@@ -30,7 +30,7 @@ const Blogpage = () => {
     }
   }, [admin]);
   const Buttons = () => (
-    <div className="flex gap-2 justify-center mb-6">
+    <div className="flex gap-6 justify-center mb-6">
       <EditButton />
       <DeleteButton />
     </div>
