@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useFetchBlogsByIdQuery } from "../app/blog/blogApiSlice";
 import { dateOptions } from "../utils/random";
@@ -8,18 +8,33 @@ import BlogSkeleton from "../components/BlogSkeleton";
 import Errorpage from "../components/Errorpage";
 import { useCurrentUser } from "../hooks/useCurrentUser";
 import { StarIcon } from "@heroicons/react/24/solid";
+import { DeleteButton, EditButton } from "../components/Button";
 const Blogpage = () => {
   const navigate = useNavigate();
   const { blogId } = useParams();
   const [currUser] = useCurrentUser();
   const { data, error, isLoading } = useFetchBlogsByIdQuery(blogId);
+  const [admin, setAdmin] = useState<boolean>(false);
+  useEffect(() => {
+    if (data?.creator.toString() === currUser?._id.toString()) {
+      setAdmin(true);
+    } else {
+      setAdmin(false);
+    }
+  }, [data, currUser]);
   const authorClickHandler = useCallback(() => {
-    if (data?.creator === currUser?._id) {
+    if (admin) {
       navigate(`/user/admin/${data?.creator}`);
     } else {
       navigate(`/user/${data?.creator}`);
     }
-  }, [data, currUser]);
+  }, [admin]);
+  const Buttons = () => (
+    <div className="flex gap-2 justify-center mb-6">
+      <EditButton />
+      <DeleteButton />
+    </div>
+  );
   const content = (
     <>
       <div className="my-8 md:my-24">
@@ -38,6 +53,7 @@ const Blogpage = () => {
             {new Date(data?.createdAt).toLocaleDateString("en-us", dateOptions)}
           </p>
         </div>
+        {admin && <Buttons />}
         <Blogtags tags={data?.tags} className={"justify-center my-12 gap-6"} />
         <div
           style={{
