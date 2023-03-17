@@ -7,7 +7,6 @@ import Profileskeleton from "../components/Profileskeleton";
 const Profilepage = () => {
   const { userId } = useParams();
   const { data, error, isLoading } = useFetchBlogsByUserAdminQuery(userId);
-  console.log(data);
   return (
     <>
       {isLoading && <Profileskeleton />}
