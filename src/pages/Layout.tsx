@@ -31,10 +31,13 @@ export const UserLayout = () => {
       <nav className="py-4 select-none flex items-center justify-between">
         {branding}
         {currUser && (
-          <span className="flex items-center gap-1 cursor-pointer">
+          <Link
+            to={`/user/admin/${currUser._id}`}
+            className="flex items-center gap-1 cursor-pointer"
+          >
             <UserCircleIcon className="h-6 w-6 md:h-8 md:w-8 fill-zinc-600" />
             <p className="text-xs md:text-base">{currUser?.name}</p>
-          </span>
+          </Link>
         )}
       </nav>
       <Outlet />
@@ -65,10 +68,13 @@ export const PublicLayout: React.FC = () => {
       {currUser && (
         <>
           <WriteButton />
-          <span className="flex items-center gap-1 cursor-pointer mx-auto">
+          <Link
+            to={`/user/admin/${currUser._id}`}
+            className="flex items-center gap-1 cursor-pointer mx-auto"
+          >
             <UserCircleIcon className="h-6 w-6 md:h-8 md:w-8 fill-zinc-600" />
             <p className="">{currUser?.name}</p>
-          </span>
+          </Link>
           <Logout />
         </>
       )}
@@ -90,10 +96,13 @@ export const PublicLayout: React.FC = () => {
           )}
           {currUser && (
             <>
-              <span className="flex items-center gap-1 cursor-pointer">
+              <Link
+                to={`/user/admin/${currUser._id}`}
+                className="flex items-center gap-1 cursor-pointer"
+              >
                 <UserCircleIcon className="h-6 w-6 md:h-8 md:w-8 fill-zinc-600" />
                 <p className="text-xs md:text-base">{currUser?.name}</p>
-              </span>
+              </Link>
               <Logout />
             </>
           )}

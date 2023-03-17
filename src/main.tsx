@@ -10,6 +10,7 @@ import { AuthLayout, PublicLayout, UserLayout } from "./pages/Layout";
 import Login from "./pages/auth/Login";
 import Write from "./pages/Write";
 import Blogpage from "./pages/Blogpage";
+import Adminpage from "./pages/Adminpage";
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <Provider store={store}>
     <BrowserRouter>
@@ -27,6 +28,10 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         {/* User Layout */}
         <Route path="/user" element={<UserLayout />}>
           <Route path="write" element={<Write />} />
+        </Route>
+        {/* admin user Layout */}
+        <Route path="user/admin" element={<PublicLayout />}>
+          <Route path=":userId" element={<Adminpage />} />
         </Route>
       </Routes>
     </BrowserRouter>

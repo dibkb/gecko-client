@@ -22,7 +22,7 @@ export const blogApiSlice = apiSlice.injectEndpoints({
         url: `/user/admin/${id}`,
         method: "GET",
       }),
-      providesTags: ["Blog"],
+      providesTags: ["Blog", "User"],
     }),
     fetchBlogsByTag: builder.query<Blog[], string>({
       query: (tag: string) => ({
