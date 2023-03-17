@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { PhotoIcon } from "@heroicons/react/24/solid";
-import { WaringPortal } from "../../components/Portal";
+import { WaringPortal } from "../../components/modals/Portal";
 import { resizeFile } from "../../utils/imageResizer";
 
 interface Addphoto {

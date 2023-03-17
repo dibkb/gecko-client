@@ -19,8 +19,13 @@ const Adminpage: React.FC = () => {
             name={data.user.name}
             username={data.user.username}
           />
-          <DeleteAccount />
-          <button className="flex ml-auto items-center gap-1 text-red-700 text-sm font-bold bg-red-100 rounded-lg px-6 py-2 hover:bg-red-200 mt-6">
+          {showModal && <DeleteAccount setShowPortal={setShowModal} />}
+          <button
+            onClick={() => {
+              setShowModal(true);
+            }}
+            className="flex ml-auto items-center gap-1 text-red-700 text-sm font-bold bg-red-100 rounded-lg px-6 py-2 hover:bg-red-200 mt-6"
+          >
             <p>Delete Account</p>
             <ExclamationTriangleIcon className="h-7 w-7 text-red-500" />
           </button>

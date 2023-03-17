@@ -1,7 +1,10 @@
 import React from "react";
 import { XMarkIcon, ExclamationTriangleIcon } from "@heroicons/react/24/solid";
 import { createPortal } from "react-dom";
-const DeleteAccount = () => {
+interface DeleteAccount {
+  setShowPortal: (val: boolean) => void;
+}
+const DeleteAccount: React.FC<DeleteAccount> = ({ setShowPortal }) => {
   const content = (
     <div
       style={{
@@ -10,7 +13,12 @@ const DeleteAccount = () => {
       className="fixed top-0 left-0 z-10 h-full w-full select-none"
     >
       <main className="bg-orange-200 shadow-xl rounded-md mx-auto mt-[20%] w-[400px] p-8 flex flex-col">
-        <XMarkIcon className="h-6 ml-auto cursor-pointer text-stone-700 hover:text-stone-900" />
+        <XMarkIcon
+          onClick={() => {
+            setShowPortal(false);
+          }}
+          className="h-6 ml-auto cursor-pointer text-stone-700 hover:text-red-700"
+        />
         <ExclamationTriangleIcon className="h-10 text-orange-600 mx-auto" />
         <p className="font-semibold text-center mt-3">Delete Account</p>
         <p className="font-medium text-xs text-orange-600 my-3 text-center">

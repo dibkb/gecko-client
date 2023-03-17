@@ -4,7 +4,7 @@ import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
 import { GithubButton, GoogleButton } from "../../components/Button";
 import { Link } from "react-router-dom";
 import { useRegisterMutation } from "../../app/auth/authApiSlice";
-import { SuccessPortal, FailurePortal } from "../../components/Portal";
+import { SuccessPortal, FailurePortal } from "../../components/modals/Portal";
 const Register: React.FC = () => {
   const [register, { isLoading }] = useRegisterMutation();
   const [error, setError] = useState<string>("");
