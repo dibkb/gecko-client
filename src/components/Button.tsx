@@ -72,6 +72,7 @@ text-white px-4 h-10 rounded-md transition duration-200 hover:scale-105 justify-
   );
 };
 export const Logout: React.FC = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [sendLogout, { isLoading }] = useSendLogoutMutation();
   return (
@@ -79,6 +80,7 @@ export const Logout: React.FC = () => {
       onClick={async () => {
         await sendLogout("");
         dispatch(setLogout());
+        navigate("/");
         window.location.reload();
       }}
       className="flex items-center gap-1 bg-neutral-800 hover:bg-neutral-900
