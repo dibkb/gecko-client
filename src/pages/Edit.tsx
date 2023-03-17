@@ -9,14 +9,19 @@ import {
   useLocalStorageBlogContent,
   useLocalStorageTitle,
 } from "../hooks/useLocalStorage";
-import { useFetchBlogsByIdQuery } from "../app/blog/blogApiSlice";
+import {
+  useFetchBlogsByIdQuery,
+  useEditBlogMutation,
+} from "../app/blog/blogApiSlice";
 import { clearLocalStorage } from "../utils/localStorage";
 import Editphoto from "./write/Editphoto";
+import { BlogSkeleton } from "../components/BlogcontainerSkeleton";
 const Write: React.FC = () => {
   const { blogId } = useParams();
   const [currUser] = useCurrentUser();
   const navigate = useNavigate();
   const { data, error, isLoading } = useFetchBlogsByIdQuery(blogId);
+  const [editBlog] = useEditBlogMutation();
   // -------------------------------------------------------------------------------
   const [title, setTitle] = useLocalStorageTitle();
   const [blogContent, setBlogContent] = useLocalStorageBlogContent();
@@ -27,17 +32,20 @@ const Write: React.FC = () => {
     if (data) {
       setTitle(data?.title);
       setBlogContent(data?.content);
-      setSelectedTags(data?.tags);
+      setSelectedTags([]);
       setImage(data?.image);
     }
   }, [data]);
   const editBlogHandler = async () => {
-    //   await createNewBlog({
-    //     title: title,
-    //     content: blogContent,
-    //     tags: selectedTags,
-    //     image: compressedFile,
-    //   });
+    await editBlog({
+      id: blogId,
+      content: {
+        title: title,
+        content: blogContent,
+        tags: selectedTags,
+        image: compressedFile ? compressedFile : image,
+      },
+    });
     clearLocalStorage();
     navigate("/");
   };
@@ -61,7 +69,7 @@ const Write: React.FC = () => {
       {page === 3 && <PublishButton onClick={editBlogHandler} />}
     </div>
   );
-  return (
+  const content = (
     <div>
       {page === 1 && (
         <Editpage
@@ -82,6 +90,12 @@ const Write: React.FC = () => {
       )}
       {buttonConainer}
     </div>
+  );
+  return (
+    <>
+      {isLoading && <BlogSkeleton />}
+      {data && content}
+    </>
   );
 };
 export default Write;
