@@ -73,15 +73,13 @@ text-white px-4 h-10 rounded-md transition duration-200 hover:scale-105 justify-
 };
 export const Logout: React.FC = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [sendLogout, { isLoading }] = useSendLogoutMutation();
   return (
     <span
       onClick={async () => {
-        await sendLogout();
+        await sendLogout("");
         dispatch(setLogout());
         window.location.reload();
-        navigate("/");
       }}
       className="flex items-center gap-1 bg-neutral-800 hover:bg-neutral-900
 text-white px-4 h-10 rounded-md justify-center"

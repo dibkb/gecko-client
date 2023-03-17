@@ -41,7 +41,7 @@ export const BannerProfilepage: React.FC<BannerAdminpage> = ({
   username,
 }) => {
   return (
-    <div className="shadow-md rounded-lg bg-gradient-to-r from-rose-900 to-cyan-900 text-white text-start p-6 h-[260px] sm:h-[360px] flex flex-col justify-end gap-4 select-none">
+    <div className="shadow-md rounded-lg bg-gradient-to-r from-rose-900 to-sky-800 text-white text-start p-6 h-[260px] sm:h-[360px] flex flex-col justify-end gap-4 select-none">
       <div className="flex items-end gap-5">
         <h1 className="font-regular text-4xl min-[420px]:text-5xl min-[520px]:text-6xl sm:text-7xl md:text-8xl">
           {name}
