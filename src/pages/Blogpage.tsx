@@ -25,12 +25,11 @@ const Blogpage: React.FC = () => {
     navigate("/");
   };
   useEffect(() => {
-    if (data)
-      if (data?.creator === currUser?._id) {
-        setAdmin(true);
-      } else {
-        setAdmin(false);
-      }
+    if (data?.creator === currUser?._id) {
+      setAdmin(true);
+    } else {
+      setAdmin(false);
+    }
   }, [data, currUser]);
   const authorClickHandler = () => {
     if (admin) {
