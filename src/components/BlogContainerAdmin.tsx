@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { ArrowUpRightIcon, StarIcon } from "@heroicons/react/24/solid";
 import { Blog } from "../app/types";
 import { dateOptions } from "../utils/random";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Blogtags } from "./Blogtags";
 import { Reaction } from "./Reaction";
 import EmptyContainer from "./EmptyContainer";
 import { DeleteButton, EditButton } from "./Button";
 import { DeleteBlog } from "./modals/DeleteWarning";
+import { useDeleteBlogMutation } from "../app/blog/blogApiSlice";
 interface BlogContainers {
   data: Blog[];
 }
@@ -15,16 +16,19 @@ interface BlogAdim {
   blog: Blog;
 }
 const BlogAdim: React.FC<BlogAdim> = ({ blog }) => {
+  const [deleteBlog] = useDeleteBlogMutation();
+  const navigate = useNavigate();
   const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
-  const deletePosthandler = () => {
+  const deletePosthandler = (id: string | undefined) => {
     setShowDeleteModal(false);
+    deleteBlog(id);
   };
   return (
     <div>
       {showDeleteModal && (
         <DeleteBlog
           setShowPortal={setShowDeleteModal}
-          deletePosthandler={deletePosthandler}
+          deletePosthandler={() => deletePosthandler(blog._id)}
         />
       )}
       <Link to={`/blog/${blog._id}`} className="cursor-pointer group">

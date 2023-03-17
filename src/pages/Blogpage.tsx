@@ -20,7 +20,6 @@ const Blogpage = () => {
   const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
   const [deleteBlog] = useDeleteBlogMutation();
   const deletePosthandler = (id: string | undefined) => {
-    console.log("de;eteong");
     setShowDeleteModal(false);
     deleteBlog(id);
     navigate("/");

@@ -3,7 +3,7 @@ import { BlogcontainerSkeleton } from "./BlogcontainerSkeleton";
 const Profileskeleton: React.FC = () => {
   return (
     <div>
-      <div className=" text-white text-start p-6 h-[260px] sm:h-[360px] skeleton"></div>
+      <div className=" text-white text-start p-6 h-[260px] sm:h-[360px] rounded-md skeleton"></div>
       <BlogcontainerSkeleton />
     </div>
   );
