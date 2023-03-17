@@ -12,6 +12,7 @@ import Write from "./pages/Write";
 import Blogpage from "./pages/Blogpage";
 import Adminpage from "./pages/Adminpage";
 import Profilepage from "./pages/Profilepage";
+import Edit from "./pages/Edit";
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <Provider store={store}>
     <BrowserRouter>
@@ -30,6 +31,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         {/* User Layout */}
         <Route path="/user" element={<UserLayout />}>
           <Route path="write" element={<Write />} />
+          <Route path="edit/:blogId" element={<Edit />} />
         </Route>
         {/* admin user Layout */}
         <Route path="user/admin" element={<PublicLayout />}>

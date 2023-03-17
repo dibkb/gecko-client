@@ -88,18 +88,21 @@ text-white px-4 h-10 rounded-md justify-center"
     </span>
   );
 };
-export const EditButton: React.FC = () => {
+export const EditButton: React.FC<Button> = ({ onClick }) => {
   return (
-    <button className="flex items-center gap-1 px-3 py-1 rounded-md text-emerald-700 text-sm font-semibold bg-emerald-50 hover:bg-emerald-100">
+    <button
+      onClick={onClick}
+      className="flex items-center gap-1 px-3 py-1 rounded-md text-emerald-700 text-sm font-semibold bg-emerald-50 hover:bg-emerald-100"
+    >
       <p>Edit</p>
       <PencilSquareIcon className="h-4 w-4" />
     </button>
   );
 };
-interface DeleteButton {
+interface Button {
   onClick: () => void;
 }
-export const DeleteButton: React.FC<DeleteButton> = ({ onClick }) => {
+export const DeleteButton: React.FC<Button> = ({ onClick }) => {
   return (
     <button
       onClick={onClick}

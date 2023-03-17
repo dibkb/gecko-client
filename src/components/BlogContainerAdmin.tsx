@@ -23,6 +23,10 @@ const BlogAdim: React.FC<BlogAdim> = ({ blog }) => {
     setShowDeleteModal(false);
     deleteBlog(id);
   };
+  const editBlogHandler = (id: string | undefined) => {
+    console.log("h9og");
+    navigate(`/user/edit/${id}`);
+  };
   return (
     <div>
       {showDeleteModal && (
@@ -65,7 +69,7 @@ const BlogAdim: React.FC<BlogAdim> = ({ blog }) => {
         />
       </Link>
       <div className="flex gap-4 mt-5">
-        <EditButton />
+        <EditButton onClick={() => editBlogHandler(blog._id)} />
         <DeleteButton onClick={() => setShowDeleteModal(true)} />
       </div>
     </div>

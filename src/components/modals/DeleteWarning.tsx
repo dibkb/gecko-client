@@ -54,10 +54,10 @@ export const DeleteBlog: React.FC<DeleteAccount> = ({
           className="h-6 ml-auto cursor-pointer text-stone-700 hover:text-red-700"
         />
         <ExclamationTriangleIcon className="h-10 text-orange-600 mx-auto" />
-        <p className="font-semibold text-center mt-3">Delete Blogpost</p>
+        <p className="font-semibold text-center mt-3">Delete Blog</p>
         <p className="font-medium text-xs text-orange-600 my-3 text-center">
           Deleting your account will permanently erase this post from the
-          database You wont be able to retrive any of data in the future.
+          database You wont be able to retrive this in the future.
         </p>
         <button
           onClick={deletePosthandler}
