@@ -17,7 +17,7 @@ const Blogpage = () => {
     if (data?.creator === currUser?._id) {
       navigate(`/user/admin/${data?.creator}`);
     } else {
-      navigate(`/`);
+      navigate(`/user/${data?.creator}`);
     }
   }, [data, currUser]);
   const content = (

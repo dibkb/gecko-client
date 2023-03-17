@@ -11,6 +11,7 @@ import Login from "./pages/auth/Login";
 import Write from "./pages/Write";
 import Blogpage from "./pages/Blogpage";
 import Adminpage from "./pages/Adminpage";
+import Profilepage from "./pages/Profilepage";
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <Provider store={store}>
     <BrowserRouter>
@@ -19,6 +20,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         <Route path="/" element={<PublicLayout />}>
           <Route index element={<App />} />
           <Route path="blog/:blogId" element={<Blogpage />} />
+          <Route path="user/:userId" element={<Profilepage />} />
         </Route>
         {/* Auth routes */}
         <Route path="/auth" element={<AuthLayout />}>
