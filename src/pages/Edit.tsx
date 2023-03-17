@@ -9,17 +9,28 @@ import {
   useLocalStorageBlogContent,
   useLocalStorageTitle,
 } from "../hooks/useLocalStorage";
-import { useCreateNewBlogMutation } from "../app/blog/blogApiSlice";
+import { useFetchBlogsByIdQuery } from "../app/blog/blogApiSlice";
 import { clearLocalStorage } from "../utils/localStorage";
+import Editphoto from "./write/Editphoto";
 const Write: React.FC = () => {
   const { blogId } = useParams();
   const [currUser] = useCurrentUser();
   const navigate = useNavigate();
+  const { data, error, isLoading } = useFetchBlogsByIdQuery(blogId);
   // -------------------------------------------------------------------------------
   const [title, setTitle] = useLocalStorageTitle();
   const [blogContent, setBlogContent] = useLocalStorageBlogContent();
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [compressedFile, setCompressedFile] = useState<File | null>(null);
+  const [image, setImage] = useState<string | null>(null);
+  useEffect(() => {
+    if (data) {
+      setTitle(data?.title);
+      setBlogContent(data?.content);
+      setSelectedTags(data?.tags);
+      setImage(data?.image);
+    }
+  }, [data]);
   const editBlogHandler = async () => {
     //   await createNewBlog({
     //     title: title,
@@ -27,10 +38,9 @@ const Write: React.FC = () => {
     //     tags: selectedTags,
     //     image: compressedFile,
     //   });
-    //   clearLocalStorage();
-    //   navigate("/");
+    clearLocalStorage();
+    navigate("/");
   };
-  console.log(blogId);
   useEffect(() => {
     if (currUser === false) {
       return navigate("/auth/login");
@@ -67,7 +77,9 @@ const Write: React.FC = () => {
           setSelectedTags={setSelectedTags}
         />
       )}
-      {page === 3 && <Addphoto setCompressedFile={setCompressedFile} />}
+      {page === 3 && (
+        <Editphoto setCompressedFile={setCompressedFile} image={image} />
+      )}
       {buttonConainer}
     </div>
   );
