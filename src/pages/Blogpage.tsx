@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useFetchBlogsByIdQuery } from "../app/blog/blogApiSlice";
 import { dateOptions } from "../utils/random";
@@ -10,6 +10,7 @@ import { useCurrentUser } from "../hooks/useCurrentUser";
 import { StarIcon } from "@heroicons/react/24/solid";
 import { DeleteButton, EditButton } from "../components/Button";
 import { DeleteBlog } from "../components/modals/DeleteWarning";
+import { useDeleteBlogMutation } from "../app/blog/blogApiSlice";
 const Blogpage = () => {
   const navigate = useNavigate();
   const { blogId } = useParams();
@@ -17,8 +18,12 @@ const Blogpage = () => {
   const { data, error, isLoading } = useFetchBlogsByIdQuery(blogId);
   const [admin, setAdmin] = useState<boolean>(false);
   const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
-  const deletePosthandler = () => {
+  const [deleteBlog] = useDeleteBlogMutation();
+  const deletePosthandler = (id: string | undefined) => {
+    console.log("de;eteong");
     setShowDeleteModal(false);
+    deleteBlog(id);
+    navigate("/");
   };
   useEffect(() => {
     if (data?.creator.toString() === currUser?._id.toString()) {
@@ -45,7 +50,7 @@ const Blogpage = () => {
       {showDeleteModal && (
         <DeleteBlog
           setShowPortal={setShowDeleteModal}
-          deletePosthandler={deletePosthandler}
+          deletePosthandler={() => deletePosthandler(data?._id)}
         />
       )}
       <div className="my-8 md:my-24">
