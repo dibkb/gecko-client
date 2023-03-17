@@ -5,7 +5,7 @@ import { useFetchBlogsByUserAdminQuery } from "../app/blog/blogApiSlice";
 import { BannerAdminpage } from "../components/Banner";
 import BlogContainerAdmin from "../components/BlogContainerAdmin";
 import Profileskeleton from "../components/Profileskeleton";
-import DeleteAccount from "../components/modals/DeleteAccount";
+import { DeleteAccount } from "../components/modals/DeleteWarning";
 const Adminpage: React.FC = () => {
   const { userId } = useParams();
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -19,7 +19,12 @@ const Adminpage: React.FC = () => {
             name={data.user.name}
             username={data.user.username}
           />
-          {showModal && <DeleteAccount setShowPortal={setShowModal} />}
+          {showModal && (
+            <DeleteAccount
+              setShowPortal={setShowModal}
+              deletePosthandler={() => {}}
+            />
+          )}
           <button
             onClick={() => {
               setShowModal(true);
