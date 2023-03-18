@@ -1,15 +1,30 @@
 import { ExclamationTriangleIcon } from "@heroicons/react/24/solid";
-import React, { useState } from "react";
-import { useParams } from "react-router-dom";
-import { useFetchBlogsByUserAdminQuery } from "../app/blog/blogApiSlice";
+import React, { useCallback, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  useDeleteBlogMutation,
+  useFetchBlogsByUserAdminQuery,
+} from "../app/blog/blogApiSlice";
 import { BannerAdminpage } from "../components/Banner";
 import BlogContainerAdmin from "../components/BlogContainerAdmin";
 import Profileskeleton from "../components/Profileskeleton";
 import { DeleteAccount } from "../components/modals/DeleteWarning";
+import { useDispatch } from "react-redux";
+import { setLogout } from "../app/features/auth/authSlice";
+import { useDeleteAccountMutation } from "../app/auth/authApiSlice";
 const Adminpage: React.FC = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { userId } = useParams();
   const [showModal, setShowModal] = useState<boolean>(false);
   const { data, error, isLoading } = useFetchBlogsByUserAdminQuery(userId);
+  const [deleteAccount] = useDeleteAccountMutation();
+  const deleteAccountHandler = useCallback(async () => {
+    await deleteAccount(userId);
+    dispatch(setLogout());
+    navigate("/");
+    window.location.reload();
+  }, [userId]);
   return (
     <>
       {isLoading && <Profileskeleton />}
@@ -22,7 +37,7 @@ const Adminpage: React.FC = () => {
           {showModal && (
             <DeleteAccount
               setShowPortal={setShowModal}
-              deletePosthandler={() => {}}
+              deleteAccountHandler={deleteAccountHandler}
             />
           )}
           <button

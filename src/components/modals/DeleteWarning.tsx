@@ -3,9 +3,16 @@ import { XMarkIcon, ExclamationTriangleIcon } from "@heroicons/react/24/solid";
 import { createPortal } from "react-dom";
 interface DeleteAccount {
   setShowPortal: (val: boolean) => void;
+  deleteAccountHandler: () => void;
+}
+interface DeleteBlog {
+  setShowPortal: (val: boolean) => void;
   deletePosthandler: () => void;
 }
-export const DeleteAccount: React.FC<DeleteAccount> = ({ setShowPortal }) => {
+export const DeleteAccount: React.FC<DeleteAccount> = ({
+  setShowPortal,
+  deleteAccountHandler,
+}) => {
   const content = (
     <div
       style={{
@@ -27,7 +34,10 @@ export const DeleteAccount: React.FC<DeleteAccount> = ({ setShowPortal }) => {
           and account details from the database.You wont be able to retrive any
           of data in the future.
         </p>
-        <button className="text-sm px-4 py-2 rounded-md text-white red-70 font-medium bg-red-600 hover:bg-red-700 self-center mt-4">
+        <button
+          onClick={deleteAccountHandler}
+          className="text-sm px-4 py-2 rounded-md text-white red-70 font-medium bg-red-600 hover:bg-red-700 self-center mt-4"
+        >
           I want to delete my account
         </button>
       </main>
@@ -35,7 +45,7 @@ export const DeleteAccount: React.FC<DeleteAccount> = ({ setShowPortal }) => {
   );
   return createPortal(content, document.body);
 };
-export const DeleteBlog: React.FC<DeleteAccount> = ({
+export const DeleteBlog: React.FC<DeleteBlog> = ({
   setShowPortal,
   deletePosthandler,
 }) => {
