@@ -18,7 +18,7 @@ const Editpage: React.FC<Editpage> = ({
         placeholder="Add Title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        className="w-full text-5xl font-semibold focus:outline-none mb-4"
+        className="w-full text-5xl font-semibold focus:outline-none mb-4 newScrollbar"
       />
       <textarea
         value={blogContent}
@@ -35,7 +35,7 @@ const Editpage: React.FC<Editpage> = ({
           setTitle("");
           setBlogContent("");
         }}
-        className="z-20 bg-amber-100 hover:bg-amber-200 text-orange-600 shadow-lg cursor-pointer fixed right-4 bottom-3 flex items-center gap-1 rounded-full px-3 py-2 newScrollbar"
+        className="z-20 bg-amber-100 hover:bg-amber-200 text-orange-600 shadow-lg cursor-pointer fixed right-4 bottom-3 flex items-center gap-1 rounded-full px-3 py-2"
       >
         <TrashIcon className="h-5" />
         <p className="text-xs font-semibold">Clear All</p>
