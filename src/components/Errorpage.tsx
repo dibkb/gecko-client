@@ -4,7 +4,7 @@ const Errorpage: React.FC = () => {
     <div className="flex flex-col items-center gap-6 pb-4 select-none">
       <img
         src={
-          "https://cdn.dribbble.com/userupload/3074608/file/original-9383b4bfc24004f8dc5114b3d77402c7.jpg?compress=1&resize=1024x768"
+          "https://cdn.dribbble.com/userupload/3074608/file/original-9383b4bfc24004f8dc5114b3d77402c7.jpg?compress=1&resize=500x400"
         }
         alt=""
         className="h-xl w-fit"
