@@ -3,7 +3,7 @@ import likedEmoji from "../assets/images/liked.png";
 import lovedEmoji from "../assets/images/loved.png";
 import helpfulEmoji from "../assets/images/helpful.png";
 import { Reactionhover } from "./Reactionhover";
-import { useEditBlogMutation } from "../app/blog/blogApiSlice";
+import { useAddReactionMutation } from "../app/blog/blogApiSlice";
 interface Reaction {
   id?: string;
   reaction: { liked: number; loved: number; helpful: number } | undefined;
@@ -26,13 +26,13 @@ export const Reaction: React.FC<Reaction> = ({
     spanClassName = "flex items-center gap-1 text-xs font-medium";
     imgClassName = "h-4";
   }
-  const [editBlog] = useEditBlogMutation();
+  const [addReaction] = useAddReactionMutation();
   const [liked, setLiked] = useState<number>(reaction?.liked ?? 0);
   const [loved, setLoved] = useState<number>(reaction?.loved ?? 0);
   const [helpful, setHelpful] = useState<number>(reaction?.helpful ?? 0);
   const addReactionHadler = async ({ id, setReaction }) => {
     setReaction((prev: number) => prev + 1);
-    await editBlog({
+    await addReaction({
       id: id,
       content: {
         reaction: {

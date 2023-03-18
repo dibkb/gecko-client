@@ -47,6 +47,16 @@ export const blogApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Blog"],
     }),
+    addReaction: builder.mutation({
+      query: ({ id, reaction }) => ({
+        url: `/blog/${id}/addReaction`,
+        method: "PUT",
+        body: {
+          reaction,
+        },
+      }),
+      invalidatesTags: ["Blog"],
+    }),
     deleteBlog: builder.mutation({
       query: (id: string | undefined) => ({
         url: `/blog/${id}/delete`,
@@ -63,5 +73,6 @@ export const {
   useFetchBlogsByUserAdminQuery,
   useCreateNewBlogMutation,
   useEditBlogMutation,
+  useAddReactionMutation,
   useDeleteBlogMutation,
 } = blogApiSlice;
