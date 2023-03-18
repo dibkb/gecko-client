@@ -52,7 +52,7 @@ const BlogContainers: React.FC<BlogContainers> = ({ data }) => {
           <Blogtags tags={blog.tags} />
           <Reaction
             reaction={blog.reaction}
-            hover={false}
+            edit={false}
             parentClassName={"flex mt-4 gap-2"}
           />
         </Link>

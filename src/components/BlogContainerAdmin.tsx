@@ -24,7 +24,6 @@ const BlogAdim: React.FC<BlogAdim> = ({ blog }) => {
     deleteBlog(id);
   };
   const editBlogHandler = (id: string | undefined) => {
-    console.log("h9og");
     navigate(`/user/edit/${id}`);
   };
   return (
@@ -64,7 +63,7 @@ const BlogAdim: React.FC<BlogAdim> = ({ blog }) => {
         <Blogtags tags={blog.tags} />
         <Reaction
           reaction={blog.reaction}
-          hover={false}
+          edit={false}
           parentClassName={"flex mt-4 gap-2"}
         />
       </Link>
