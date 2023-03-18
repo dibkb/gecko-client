@@ -7,25 +7,36 @@ import Input from "../../components/Input";
 import { setCredentials } from "../../app/features/auth/authSlice";
 import { useCurrentUser } from "../../hooks/useCurrentUser";
 import { useDispatch } from "react-redux";
+import { FailurePortal } from "../../components/modals/Portal";
 const Login: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [login, { isLoading }] = useLoginMutation();
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string>("");
+  const [showPortal, setShowPortal] = useState<null | "success" | "failure">(
+    null
+  );
   const loginHandler = useCallback(
     async (e: React.SyntheticEvent<HTMLFormElement>) => {
       e.preventDefault();
       try {
         const response = await login({ username, password }).unwrap();
         dispatch(setCredentials(response));
-        navigate("/");
-      } catch (error) {}
+        return navigate("/");
+      } catch (error) {
+        setError(error.data);
+        setShowPortal("failure");
+      }
     },
     [username, password]
   );
   return (
     <div className="mx-auto max-w-lg">
+      {showPortal === "failure" && (
+        <FailurePortal setShowPortal={setShowPortal} message={error} />
+      )}
       <h1 className="text-4xl md:text-5xl font-semibold">Login</h1>
       <p className="my-8 sm:my-12 text-sm sm:text-base">
         Using our unlimited passion for technology
