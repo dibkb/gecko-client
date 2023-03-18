@@ -13,7 +13,7 @@ const Editpage: React.FC<Editpage> = ({
   setTitle,
 }) => {
   return (
-    <div className="flex flex-col min-h-[700px] h-auto">
+    <div className="flex flex-col min-h-[700px] h-auto newScrollbar">
       <textarea
         placeholder="Add Title"
         value={title}
@@ -27,7 +27,7 @@ const Editpage: React.FC<Editpage> = ({
         id="blog"
         cols={40}
         rows={10}
-        className="w-full flex-grow outline-none font-medium"
+        className="w-full flex-grow outline-none font-medium newScrollbar"
         placeholder="Add Content"
       ></textarea>
       <span
@@ -35,7 +35,7 @@ const Editpage: React.FC<Editpage> = ({
           setTitle("");
           setBlogContent("");
         }}
-        className="z-20 bg-amber-100 hover:bg-amber-200 text-orange-600 shadow-lg cursor-pointer fixed right-4 bottom-3 flex items-center gap-1 rounded-full px-3 py-2"
+        className="z-20 bg-amber-100 hover:bg-amber-200 text-orange-600 shadow-lg cursor-pointer fixed right-4 bottom-3 flex items-center gap-1 rounded-full px-3 py-2 newScrollbar"
       >
         <TrashIcon className="h-5" />
         <p className="text-xs font-semibold">Clear All</p>
