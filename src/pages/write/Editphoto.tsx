@@ -21,7 +21,7 @@ const Editphoto: React.FC<Editphoto> = ({ setCompressedFile, image }) => {
         setShowModal(true);
       }
     },
-    []
+    [image]
   );
   return (
     <div>
@@ -32,7 +32,7 @@ const Editphoto: React.FC<Editphoto> = ({ setCompressedFile, image }) => {
         />
       )}
       {/* image preview */}
-      <div className="max-h-[600px] mb-10">
+      <div className="min-h-[300px] md:min-h-[400px] lg:min-h-[600px] mb-10">
         {preview && (
           <img src={preview} className="max-h-[600px] mx-auto shadow-xl" />
         )}

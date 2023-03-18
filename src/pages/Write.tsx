@@ -44,7 +44,7 @@ const Write: React.FC = () => {
   };
   // -------------------------------------BUTTONS--------------------------------
   const buttonConainer = (
-    <div className=" mt-6 mb-6 flex gap-12 justify-center">
+    <div className=" mt-6 mb-6 flex gap-6 md:gap-12 justify-center">
       {page !== 1 && <PreviousButton onClick={decrementPage} />}
       {page !== 3 && <NextButton onClick={incrementPage} />}
       {page === 3 && <PublishButton onClick={createBlogHandler} />}
