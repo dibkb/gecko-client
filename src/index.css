@@ -37,7 +37,7 @@
 }
 
 /* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
+.newScrollbar::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
 .hide__scrollbar::-webkit-scrollbar {
