@@ -13,9 +13,8 @@ const Editpage: React.FC<Editpage> = ({
 }) => {
   return (
     <div className="flex flex-col min-h-[700px]">
-      <input
+      <textarea
         placeholder="Add Title"
-        type="text"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         className="w-full text-5xl font-semibold focus:outline-none mb-4"

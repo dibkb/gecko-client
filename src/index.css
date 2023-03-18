@@ -29,3 +29,25 @@
     @apply bg-zinc-300;
   }
 }
+::-webkit-scrollbar {
+  cursor: pointer;
+  width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  cursor: pointer;
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  cursor: pointer;
+  background: #888;
+  border-radius: 6px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
