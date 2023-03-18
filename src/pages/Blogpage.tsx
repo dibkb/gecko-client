@@ -81,8 +81,9 @@ const Blogpage: React.FC = () => {
         ></div>
         <p className="mt-12 leading-8">{data?.content}</p>
         <Reaction
+          id={data?._id}
           reaction={data?.reaction}
-          hover={true}
+          edit={true}
           parentClassName={"flex gap-4 justify-center mt-12"}
         />
       </div>

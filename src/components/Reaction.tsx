@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import likedEmoji from "../assets/images/liked.png";
 import lovedEmoji from "../assets/images/loved.png";
 import helpfulEmoji from "../assets/images/helpful.png";
 import { Reactionhover } from "./Reactionhover";
+import { useEditBlogMutation } from "../app/blog/blogApiSlice";
 interface Reaction {
+  id?: string;
   reaction: { liked: number; loved: number; helpful: number } | undefined;
   edit: boolean;
   parentClassName?: string;
 }
 export const Reaction: React.FC<Reaction> = ({
+  id,
   reaction,
   edit,
   parentClassName,
@@ -23,22 +26,42 @@ export const Reaction: React.FC<Reaction> = ({
     spanClassName = "flex items-center gap-1 text-xs font-medium";
     imgClassName = "h-4";
   }
+  const [editBlog] = useEditBlogMutation();
+  const [liked, setLiked] = useState<number>(reaction?.liked ?? 0);
+  const [loved, setLoved] = useState<number>(reaction?.loved ?? 0);
+  const [helpful, setHelpful] = useState<number>(reaction?.helpful ?? 0);
+  const addReactionHadler = async ({ id, setReaction }) => {
+    setReaction((prev: number) => prev + 1);
+    await editBlog({
+      id: id,
+      content: {
+        reaction: {
+          liked,
+          loved,
+          helpful,
+        },
+      },
+    });
+  };
   return (
     <div className={parentClassName}>
-      <span className={spanClassName}>
+      <span
+        className={spanClassName}
+        onClick={() => addReactionHadler({ id: id, setReaction: setLiked })}
+      >
         <img src={likedEmoji} alt="like Emoji" className={imgClassName} />
         {edit && <Reactionhover text="Liked the article" />}
-        <p className="">{reaction?.liked}</p>
+        <p className="">{liked}</p>
       </span>
       <span className={spanClassName}>
         <img src={lovedEmoji} alt="loved Emoji" className={imgClassName} />
         {edit && <Reactionhover text="Loved the article" />}
-        <p>{reaction?.loved}</p>
+        <p>{loved}</p>
       </span>{" "}
       <span className={spanClassName}>
         <img src={helpfulEmoji} alt="helpful Emoji" className={imgClassName} />
         {edit && <Reactionhover text="Found the article helpful" />}
-        <p>{reaction?.helpful}</p>
+        <p>{helpful}</p>
       </span>
     </div>
   );
