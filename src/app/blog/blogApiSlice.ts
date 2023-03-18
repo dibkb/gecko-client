@@ -48,11 +48,11 @@ export const blogApiSlice = apiSlice.injectEndpoints({
       invalidatesTags: ["Blog"],
     }),
     addReaction: builder.mutation({
-      query: ({ id, reaction }) => ({
+      query: ({ id, newReaction }) => ({
         url: `/blog/${id}/addReaction`,
         method: "PUT",
         body: {
-          reaction,
+          newReaction,
         },
       }),
       invalidatesTags: ["Blog"],

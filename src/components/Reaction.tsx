@@ -32,16 +32,17 @@ export const Reaction: React.FC<Reaction> = ({
   const [loved, setLoved] = useState<number>(reaction?.loved ?? 0);
   const [helpful, setHelpful] = useState<number>(reaction?.helpful ?? 0);
   const addReactionHadler = async ({ id, reaction, setReaction }) => {
-    if (edit)
+    if (edit) {
+      setReaction(reaction + 1);
       await addReaction({
         id: id,
-        reaction: {
+        newReaction: {
           liked,
           loved,
           helpful,
         },
       });
-    setReaction(reaction + 1);
+    }
   };
   return (
     <div className={parentClassName}>
