@@ -28,7 +28,7 @@ const BlogContainers: React.FC<BlogContainers> = ({ data }) => {
               backgroundPosition: "center",
               backgroundSize: "cover",
             }}
-            className={`aspect-video border mb-4 rounded-lg group-hover:bg-zinc-700 group-hover:scale-105 transition duration-300 ease-out`}
+            className={`aspect-video mb-4 rounded-lg group-hover:scale-105 transition duration-300 ease-out`}
           ></div>
           <div className="flex items-center gap-2 text-xs font-semibold text-zinc-500">
             <p>{blog.creatorName}</p>
@@ -52,7 +52,7 @@ const BlogContainers: React.FC<BlogContainers> = ({ data }) => {
           <Blogtags tags={blog.tags} />
           <Reaction
             reaction={blog.reaction}
-            hover={false}
+            edit={false}
             parentClassName={"flex mt-4 gap-2"}
           />
         </Link>

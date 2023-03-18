@@ -1,11 +1,14 @@
 import {
   ArrowUpRightIcon,
   PencilSquareIcon,
-  ArrowUpLeftIcon,
+  TrashIcon,
 } from "@heroicons/react/24/solid";
 import React from "react";
 import { AiFillGithub, AiOutlineGoogle } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useSendLogoutMutation } from "../app/auth/authApiSlice";
+import { setLogout } from "../app/features/auth/authSlice";
 interface ButtonProps {
   label: string;
 }
@@ -69,12 +72,47 @@ text-white px-4 h-10 rounded-md transition duration-200 hover:scale-105 justify-
   );
 };
 export const Logout: React.FC = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [sendLogout, { isLoading }] = useSendLogoutMutation();
   return (
     <span
+      onClick={async () => {
+        await sendLogout("");
+        dispatch(setLogout());
+        navigate("/");
+        window.location.reload();
+      }}
       className="flex items-center gap-1 bg-neutral-800 hover:bg-neutral-900
 text-white px-4 h-10 rounded-md justify-center"
     >
       Logout
     </span>
+  );
+};
+interface Button {
+  onClick: () => void;
+}
+export const EditButton: React.FC<Button> = ({ onClick }) => {
+  return (
+    <button
+      onClick={onClick}
+      className="flex items-center gap-1 px-3 py-1 rounded-md text-emerald-700 text-sm font-semibold bg-emerald-50 hover:bg-emerald-100"
+    >
+      <p>Edit</p>
+      <PencilSquareIcon className="h-4 w-4" />
+    </button>
+  );
+};
+
+export const DeleteButton: React.FC<Button> = ({ onClick }) => {
+  return (
+    <button
+      onClick={onClick}
+      className="flex items-center gap-1 px-3 py-1 rounded-md text-red-700 text-sm font-semibold bg-red-50 hover:bg-red-100"
+    >
+      <p>Delete</p>
+      <TrashIcon className="h-4 w-4" />
+    </button>
   );
 };

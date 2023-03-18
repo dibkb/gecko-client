@@ -3,11 +3,12 @@ import { PhotoIcon } from "@heroicons/react/24/solid";
 import { WaringPortal } from "../../components/modals/Portal";
 import { resizeFile } from "../../utils/imageResizer";
 
-interface Addphoto {
+interface Editphoto {
   setCompressedFile: (img: File) => void;
+  image: string | null;
 }
-const Addphoto: React.FC<Addphoto> = ({ setCompressedFile }) => {
-  const [preview, setPreview] = useState<string>("");
+const Editphoto: React.FC<Editphoto> = ({ setCompressedFile, image }) => {
+  const [preview, setPreview] = useState<string | null>(image);
   const [showModal, setShowModal] = useState<boolean>(false);
   const handleFileChange = useCallback(
     async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,4 +60,4 @@ const Addphoto: React.FC<Addphoto> = ({ setCompressedFile }) => {
   );
 };
 
-export default Addphoto;
+export default Editphoto;

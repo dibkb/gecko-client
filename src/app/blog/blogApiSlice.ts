@@ -17,6 +17,13 @@ export const blogApiSlice = apiSlice.injectEndpoints({
       }),
       providesTags: ["Blog"],
     }),
+    fetchBlogsByUserAdmin: builder.query({
+      query: (id: string | undefined) => ({
+        url: `/user/admin/${id}`,
+        method: "GET",
+      }),
+      providesTags: ["Blog", "User"],
+    }),
     fetchBlogsByTag: builder.query<Blog[], string>({
       query: (tag: string) => ({
         url: `/blog/filter/${tag}`,
@@ -32,11 +39,40 @@ export const blogApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Blog"],
     }),
+    editBlog: builder.mutation({
+      query: ({ id, content }) => ({
+        url: `/blog/${id}/update`,
+        method: "PUT",
+        body: content,
+      }),
+      invalidatesTags: ["Blog"],
+    }),
+    addReaction: builder.mutation({
+      query: ({ id, newReaction }) => ({
+        url: `/blog/${id}/addReaction`,
+        method: "PUT",
+        body: {
+          newReaction,
+        },
+      }),
+      invalidatesTags: ["Blog"],
+    }),
+    deleteBlog: builder.mutation({
+      query: (id: string | undefined) => ({
+        url: `/blog/${id}/delete`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Blog"],
+    }),
   }),
 });
 export const {
   useFetchBlogsQuery,
   useFetchBlogsByTagQuery,
   useFetchBlogsByIdQuery,
+  useFetchBlogsByUserAdminQuery,
   useCreateNewBlogMutation,
+  useEditBlogMutation,
+  useAddReactionMutation,
+  useDeleteBlogMutation,
 } = blogApiSlice;

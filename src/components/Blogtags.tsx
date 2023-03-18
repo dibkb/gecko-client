@@ -5,11 +5,11 @@ interface Blogtags {
 }
 export const Blogtags: React.FC<Blogtags> = ({ tags, className }) => {
   return (
-    <div className={`flex gap-3 mt-4 ${className}`}>
+    <div className={`flex gap-3 mt-4 flex-wrap ${className}`}>
       {tags?.map((tag) => (
         <span
           key={tag}
-          className="text-sm font-semibold border border-primary rounded-full px-3"
+          className="text-xs text-stone-800 font-semibold border border-stone-800 rounded-full px-3 py-1"
         >
           {tag}
         </span>

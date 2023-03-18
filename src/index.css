@@ -6,17 +6,6 @@
   font-family: "Inter", sans-serif;
   color: "#121927";
 }
-.hide__scrollbar::-webkit-scrollbar {
-  /* visibility: hidden; */
-  opacity: 0;
-}
-.hide__scrollbar {
-  @apply w-full overflow-scroll mt-5;
-  /* border: 1px solid red; */
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  scroll-behavior: smooth;
-}
 .skeleton {
   animation: skeleton-loading 1s linear infinite alternate;
 }
@@ -28,4 +17,37 @@
   100% {
     @apply bg-zinc-300;
   }
+}
+.newScrollbar::-webkit-scrollbar {
+  cursor: pointer;
+  width: 4px;
+}
+
+/* Track */
+.newScrollbar::-webkit-scrollbar-track {
+  cursor: pointer;
+  background: transparent;
+}
+
+/* Handle */
+.newScrollbar::-webkit-scrollbar-thumb {
+  cursor: pointer;
+  background: #888;
+  border-radius: 6px;
+}
+
+/* Handle on hover */
+.newScrollbar::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.hide__scrollbar::-webkit-scrollbar {
+  /* visibility: hidden; */
+  opacity: 0;
+}
+.hide__scrollbar {
+  @apply w-full overflow-scroll mt-5;
+  /* border: 1px solid red; */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
 }

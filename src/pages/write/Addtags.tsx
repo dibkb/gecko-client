@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { tagData } from "../../utils/tagData";
-import { WaringPortal } from "../../components/Portal";
+import { WaringPortal } from "../../components/modals/Portal";
 import { AvailableTags, SelectedTags } from "../../components/Tags";
 interface Addtags {
   selectedTags: string[];

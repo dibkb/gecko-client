@@ -4,7 +4,10 @@ import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
 import { GithubButton, GoogleButton } from "../../components/Button";
 import { Link } from "react-router-dom";
 import { useRegisterMutation } from "../../app/auth/authApiSlice";
-import { SuccessPortal, FailurePortal } from "../../components/Portal";
+import {
+  RegisterSuccessPortal,
+  FailurePortal,
+} from "../../components/modals/Portal";
 const Register: React.FC = () => {
   const [register, { isLoading }] = useRegisterMutation();
   const [error, setError] = useState<string>("");
@@ -33,7 +36,7 @@ const Register: React.FC = () => {
         <FailurePortal setShowPortal={setShowPortal} message={error} />
       )}
       {showPortal === "success" && (
-        <SuccessPortal setShowPortal={setShowPortal} />
+        <RegisterSuccessPortal setShowPortal={setShowPortal} />
       )}
       <div className="mx-auto max-w-lg">
         <h1 className="text-4xl md:text-5xl font-semibold">Register</h1>

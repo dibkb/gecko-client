@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { TrashIcon } from "@heroicons/react/24/outline";
 interface Editpage {
   blogContent: string;
   title: string;
@@ -12,13 +13,12 @@ const Editpage: React.FC<Editpage> = ({
   setTitle,
 }) => {
   return (
-    <div className="flex flex-col min-h-[700px]">
-      <input
+    <div className="flex flex-col min-h-[700px] h-auto newScrollbar">
+      <textarea
         placeholder="Add Title"
-        type="text"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        className="w-full text-5xl font-semibold focus:outline-none mb-4"
+        className="w-full text-5xl font-semibold focus:outline-none mb-4 newScrollbar"
       />
       <textarea
         value={blogContent}
@@ -27,9 +27,19 @@ const Editpage: React.FC<Editpage> = ({
         id="blog"
         cols={40}
         rows={10}
-        className="w-full flex-grow outline-none font-medium"
+        className="w-full flex-grow outline-none font-medium newScrollbar"
         placeholder="Add Content"
       ></textarea>
+      <span
+        onClick={() => {
+          setTitle("");
+          setBlogContent("");
+        }}
+        className="z-20 bg-amber-100 hover:bg-amber-200 text-orange-600 shadow-lg cursor-pointer fixed right-4 bottom-3 flex items-center gap-1 rounded-full px-3 py-2"
+      >
+        <TrashIcon className="h-5" />
+        <p className="text-xs font-semibold">Clear All</p>
+      </span>
     </div>
   );
 };

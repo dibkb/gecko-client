@@ -5,7 +5,9 @@ interface Portalinterface {
   setShowPortal: (val: any) => void;
   message?: string;
 }
-export const SuccessPortal: React.FC<Portalinterface> = ({ setShowPortal }) => {
+export const RegisterSuccessPortal: React.FC<Portalinterface> = ({
+  setShowPortal,
+}) => {
   const navigate = useNavigate();
   const buttonClickHandler = () => {
     setShowPortal(null);

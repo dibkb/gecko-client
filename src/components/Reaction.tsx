@@ -1,21 +1,25 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import likedEmoji from "../assets/images/liked.png";
 import lovedEmoji from "../assets/images/loved.png";
 import helpfulEmoji from "../assets/images/helpful.png";
 import { Reactionhover } from "./Reactionhover";
+import { useAddReactionMutation } from "../app/blog/blogApiSlice";
+import { clearLocalStorage } from "../utils/localStorage";
 interface Reaction {
+  id?: string;
   reaction: { liked: number; loved: number; helpful: number } | undefined;
-  hover: boolean;
+  edit: boolean;
   parentClassName?: string;
 }
 export const Reaction: React.FC<Reaction> = ({
+  id,
   reaction,
-  hover,
+  edit,
   parentClassName,
 }) => {
   let imgClassName: string;
   let spanClassName: string;
-  if (hover) {
+  if (edit) {
     imgClassName = "group-hover:scale-125 transition duration-300 ease-out";
     spanClassName =
       "flex gap-2 cursor-pointer items-center font-medium group relative";
@@ -23,22 +27,58 @@ export const Reaction: React.FC<Reaction> = ({
     spanClassName = "flex items-center gap-1 text-xs font-medium";
     imgClassName = "h-4";
   }
+  const [addReaction] = useAddReactionMutation();
+  const [liked, setLiked] = useState<number>(reaction?.liked ?? 0);
+  const [loved, setLoved] = useState<number>(reaction?.loved ?? 0);
+  const [helpful, setHelpful] = useState<number>(reaction?.helpful ?? 0);
+  const addReactionHadler = async ({ id, reaction, setReaction }) => {
+    if (edit) {
+      setReaction(reaction + 1);
+      await addReaction({
+        id: id,
+        newReaction: {
+          liked,
+          loved,
+          helpful,
+        },
+      });
+    }
+  };
   return (
     <div className={parentClassName}>
-      <span className={spanClassName}>
+      <span
+        className={spanClassName}
+        onClick={() =>
+          addReactionHadler({ id: id, reaction: liked, setReaction: setLiked })
+        }
+      >
         <img src={likedEmoji} alt="like Emoji" className={imgClassName} />
-        {hover && <Reactionhover text="Liked the article" />}
-        <p className="">{reaction?.liked}</p>
+        {edit && <Reactionhover text="Liked the article" />}
+        <p className="">{liked}</p>
       </span>
-      <span className={spanClassName}>
+      <span
+        onClick={() =>
+          addReactionHadler({ id: id, reaction: loved, setReaction: setLoved })
+        }
+        className={spanClassName}
+      >
         <img src={lovedEmoji} alt="loved Emoji" className={imgClassName} />
-        {hover && <Reactionhover text="Loved the article" />}
-        <p>{reaction?.loved}</p>
-      </span>{" "}
-      <span className={spanClassName}>
+        {edit && <Reactionhover text="Loved the article" />}
+        <p>{loved}</p>
+      </span>
+      <span
+        onClick={() =>
+          addReactionHadler({
+            id: id,
+            reaction: helpful,
+            setReaction: setHelpful,
+          })
+        }
+        className={spanClassName}
+      >
         <img src={helpfulEmoji} alt="helpful Emoji" className={imgClassName} />
-        {hover && <Reactionhover text="Found the article helpful" />}
-        <p>{reaction?.helpful}</p>
+        {edit && <Reactionhover text="Found the article helpful" />}
+        <p>{helpful}</p>
       </span>
     </div>
   );
