@@ -14,9 +14,9 @@ const Editphoto: React.FC<Editphoto> = ({ setCompressedFile, image }) => {
     async (e: React.ChangeEvent<HTMLInputElement>) => {
       if (e.target.files && e.target.files[0].type.split("/")[0] === "image") {
         const image = e.target.files[0];
-        setPreview(URL.createObjectURL(image));
         const compressImage = await resizeFile(image);
         setCompressedFile(compressImage);
+        setPreview(URL.createObjectURL(image));
       } else {
         setShowModal(true);
       }

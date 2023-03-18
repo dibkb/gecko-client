@@ -49,7 +49,7 @@ const Edit: React.FC = () => {
         title: title,
         content: blogContent,
         tags: selectedTags,
-        image: compressedFile ? compressedFile : image,
+        image: compressedFile,
       },
     });
     clearLocalStorage();

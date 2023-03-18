@@ -27,7 +27,7 @@ export const AuthLayout: React.FC = () => {
 export const UserLayout = () => {
   const [currUser] = useCurrentUser();
   return (
-    <div className="max-w-screen-2xl container mx-auto px-3 border sm:px-6 lg:sm-4 pb-6">
+    <div className="max-w-screen-2xl container mx-auto px-3 sm:px-6 lg:sm-4 pb-6">
       <nav className="py-4 select-none flex items-center justify-between">
         {branding}
         {currUser && (
