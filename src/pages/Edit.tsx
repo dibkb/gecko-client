@@ -35,12 +35,6 @@ const Edit: React.FC = () => {
       setSelectedTags([]);
       setImage(data?.image);
     }
-    () => {
-      setTitle("");
-      setBlogContent("");
-      setSelectedTags([]);
-      setImage("");
-    };
   }, [data]);
   const editBlogHandler = async () => {
     await editBlog({
@@ -49,7 +43,7 @@ const Edit: React.FC = () => {
         title: title,
         content: blogContent,
         tags: selectedTags,
-        image: compressedFile,
+        image: compressedFile ? compressedFile : image,
       },
     });
     clearLocalStorage();

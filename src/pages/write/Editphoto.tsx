@@ -32,7 +32,7 @@ const Editphoto: React.FC<Editphoto> = ({ setCompressedFile, image }) => {
         />
       )}
       {/* image preview */}
-      <div className="min-h-[600px] mb-10">
+      <div className="max-h-[600px] mb-10">
         {preview && (
           <img src={preview} className="max-h-[600px] mx-auto shadow-xl" />
         )}
