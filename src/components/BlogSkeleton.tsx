@@ -17,7 +17,7 @@ const BlogSkeleton: React.FC = () => {
       </span>
       <div className={"mx-auto aspect-video rounded-lg skeleton"}></div>
       <div className="mt-12 flex flex-col gap-4">
-        {[...Array(12)].map((e, i) => (
+        {[...Array(36)].map((e, i) => (
           <TextSkeleton key={JSON.stringify(i)} />
         ))}
       </div>

@@ -23,7 +23,10 @@ const BlogContainers: React.FC<BlogContainers> = ({ data }) => {
         >
           <div
             style={{
-              backgroundImage: `url(${blog.image})`,
+              backgroundImage: `url(${
+                blog.image ??
+                "https://upload.wikimedia.org/wikipedia/commons/3/3f/Placeholder_view_vector.svg"
+              })`,
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center",
               backgroundSize: "cover",
