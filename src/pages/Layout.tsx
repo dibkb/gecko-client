@@ -70,7 +70,7 @@ export const PublicLayout: React.FC = () => {
           <WriteButton />
           <Link
             to={`/user/admin/${currUser._id}`}
-            className="flex items-center gap-1 cursor-pointer mx-auto"
+            className="flex items-center gap-1 cursor-pointer mx-auto px-2 py-1 rounded-md hover:bg-stone-200"
           >
             <UserCircleIcon className="h-6 w-6 md:h-8 md:w-8 fill-zinc-600" />
             <p className="">{currUser?.name}</p>
@@ -98,7 +98,7 @@ export const PublicLayout: React.FC = () => {
             <>
               <Link
                 to={`/user/admin/${currUser._id}`}
-                className="flex items-center gap-1 cursor-pointer"
+                className="flex items-center gap-1 cursor-pointer px-2 py-1 rounded-md hover:bg-stone-200"
               >
                 <UserCircleIcon className="h-6 w-6 md:h-8 md:w-8 fill-zinc-600" />
                 <p className="text-xs md:text-base">{currUser?.name}</p>
