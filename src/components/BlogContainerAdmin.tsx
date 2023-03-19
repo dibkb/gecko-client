@@ -35,13 +35,10 @@ const BlogAdim: React.FC<BlogAdim> = ({ blog }) => {
           deletePosthandler={() => deletePosthandler(blog._id)}
         />
       )}
-      <Link
-        to={`/blog/${blog._id ?? placeholderImage}`}
-        className="cursor-pointer group"
-      >
+      <Link to={`/blog/${blog._id}`} className="cursor-pointer group">
         <div
           style={{
-            backgroundImage: `url(${blog.image})`,
+            backgroundImage: `url(${blog.image ?? placeholderImage})`,
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
             backgroundSize: "cover",

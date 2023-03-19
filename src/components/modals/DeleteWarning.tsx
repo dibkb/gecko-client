@@ -20,7 +20,7 @@ export const DeleteAccount: React.FC<DeleteAccount> = ({
       }}
       className="fixed top-0 left-0 z-10 h-full w-full select-none"
     >
-      <main className="bg-orange-200 shadow-xl rounded-md mx-auto mt-16 w-[90%] p-4 md:p-8 flex flex-col">
+      <main className="bg-orange-200 shadow-xl rounded-md mx-auto mt-16 w-[90%] max-w-lg p-4 md:p-8 flex flex-col">
         <XMarkIcon
           onClick={() => {
             setShowPortal(false);
@@ -56,7 +56,7 @@ export const DeleteBlog: React.FC<DeleteBlog> = ({
       }}
       className="fixed top-0 left-0 z-10 h-full w-full select-none overflow-hidden"
     >
-      <main className="bg-orange-200 shadow-xl rounded-md mx-auto mt-16 w-[90%] p-4 md:p-8 flex flex-col">
+      <main className="bg-orange-200 shadow-xl rounded-md mx-auto max-w-lg mt-16 w-[90%] p-4 md:p-8 flex flex-col">
         <XMarkIcon
           onClick={() => {
             setShowPortal(false);
