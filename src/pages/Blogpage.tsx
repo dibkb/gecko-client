@@ -80,7 +80,7 @@ const Blogpage: React.FC = () => {
           }}
           className={`mx-auto aspect-video rounded-lg max-h-[500px]`}
         ></div>
-        <p className="mt-12 leading-8">{data?.content}</p>
+        <p className="mt-12 leading-8 font-brand_two">{data?.content}</p>
         <Reaction
           id={data?._id}
           reaction={data?.reaction}
