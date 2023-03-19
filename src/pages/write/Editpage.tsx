@@ -27,7 +27,7 @@ const Editpage: React.FC<Editpage> = ({
         id="blog"
         cols={40}
         rows={10}
-        className="w-full flex-grow outline-none font-medium newScrollbar font-brand_two"
+        className="w-full flex-grow outline-none font-medium newScrollbar font-brand_two text-stone-700 text-2xl"
         placeholder="Add Content"
       ></textarea>
       <span
