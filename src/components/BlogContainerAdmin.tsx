@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ArrowUpRightIcon, StarIcon } from "@heroicons/react/24/solid";
+import placeholderImage from "../assets/images/placeholder.jpg";
 import { Blog } from "../app/types";
 import { dateOptions } from "../utils/random";
 import { Link, useNavigate } from "react-router-dom";
@@ -34,7 +35,10 @@ const BlogAdim: React.FC<BlogAdim> = ({ blog }) => {
           deletePosthandler={() => deletePosthandler(blog._id)}
         />
       )}
-      <Link to={`/blog/${blog._id}`} className="cursor-pointer group">
+      <Link
+        to={`/blog/${blog._id ?? placeholderImage}`}
+        className="cursor-pointer group"
+      >
         <div
           style={{
             backgroundImage: `url(${blog.image})`,

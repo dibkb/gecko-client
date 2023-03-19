@@ -11,6 +11,7 @@ import { StarIcon } from "@heroicons/react/24/solid";
 import { DeleteButton, EditButton } from "../components/Button";
 import { DeleteBlog } from "../components/modals/DeleteWarning";
 import { useDeleteBlogMutation } from "../app/blog/blogApiSlice";
+import placeholderImage from "../assets/images/placeholder.jpg";
 const Blogpage: React.FC = () => {
   const navigate = useNavigate();
   const { blogId } = useParams();
@@ -72,7 +73,7 @@ const Blogpage: React.FC = () => {
         <Blogtags tags={data?.tags} className={"justify-center my-12 gap-6"} />
         <div
           style={{
-            backgroundImage: `url(${data?.image})`,
+            backgroundImage: `url(${data?.image ?? placeholderImage})`,
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
             backgroundSize: "cover",

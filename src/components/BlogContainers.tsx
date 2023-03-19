@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { Blogtags } from "./Blogtags";
 import { Reaction } from "./Reaction";
 import EmptyContainer from "./EmptyContainer";
+import placeholderImage from "../assets/images/placeholder.jpg";
 interface BlogContainers {
   data: Blog[];
 }
@@ -23,10 +24,7 @@ const BlogContainers: React.FC<BlogContainers> = ({ data }) => {
         >
           <div
             style={{
-              backgroundImage: `url(${
-                blog.image ??
-                "https://upload.wikimedia.org/wikipedia/commons/3/3f/Placeholder_view_vector.svg"
-              })`,
+              backgroundImage: `url(${blog.image ?? placeholderImage})`,
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center",
               backgroundSize: "cover",
