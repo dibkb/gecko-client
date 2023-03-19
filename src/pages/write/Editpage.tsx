@@ -16,12 +16,12 @@ const Editpage: React.FC<Editpage> = ({
     <div className="flex flex-col min-h-[700px] h-auto newScrollbar">
       <textarea
         placeholder="Add Title"
-        value={title}
+        value={title ?? ""}
         onChange={(e) => setTitle(e.target.value)}
         className="w-full text-5xl font-semibold focus:outline-none mb-4 newScrollbar"
       />
       <textarea
-        value={blogContent}
+        value={blogContent ?? ""}
         onChange={(e) => setBlogContent(e.target.value)}
         name="blog"
         id="blog"
