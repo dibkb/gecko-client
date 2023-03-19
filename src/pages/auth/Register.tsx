@@ -76,8 +76,8 @@ const Register: React.FC = () => {
             <p>Create Account</p>
             <ArrowUpRightIcon className="h-6 w-6" />
           </button>
-          <GoogleButton label={"Sign In with Google"} />
-          <GithubButton label={"Sign In with Github"} />
+          {/* <GoogleButton label={"Sign In with Google"} />
+          <GithubButton label={"Sign In with Github"} /> */}
           <Link
             to="/auth/login"
             className="text-sm flex gap-3 mx-auto mt-4 group mb-3"

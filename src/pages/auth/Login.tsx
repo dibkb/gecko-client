@@ -67,8 +67,8 @@ const Login: React.FC = () => {
           <p>Login</p>
           <ArrowUpRightIcon className="h-5 w-5 sm:h-6 sm:w-6 self-center" />
         </button>
-        <GoogleButton label={"Login with Google"} />
-        <GithubButton label={"Login with Github"} />
+        {/* <GoogleButton label={"Login with Google"} />
+        <GithubButton label={"Login with Github"} /> */}
         <Link
           to="/auth/register"
           className="text-sm flex gap-3 mx-auto mt-4 group mb-3"
