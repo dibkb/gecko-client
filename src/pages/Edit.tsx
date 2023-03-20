@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Addphoto from "./write/Addphoto";
 import Addtags from "./write/Addtags";
 import Editpage from "./write/Editpage";
 import { useCurrentUser } from "../hooks/useCurrentUser";
