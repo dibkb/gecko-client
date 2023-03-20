@@ -28,19 +28,19 @@ const Footer: React.FC = () => {
               size={"35"}
             />
           </a>
-          <a href="https://twitter.com/dibaskb">
+          <a href="https://www.linkedin.com/in/dibas-k-borborah-736a04185/">
             <AiFillLinkedin
               className="border rounded-md p-1 cursor-pointer hover:text-white hover:bg-stone-700"
               size={"35"}
             />
           </a>
-          <a href="https://twitter.com/dibaskb">
+          <a href="https://github.com/dibkb">
             <AiOutlineGithub
               className="border rounded-md p-1 cursor-pointer hover:text-white hover:bg-stone-700"
               size={"35"}
             />
           </a>
-          <a href="https://twitter.com/dibaskb">
+          <a href="https://www.instagram.com/dib.kb/">
             <AiOutlineInstagram
               className="border rounded-md p-1 cursor-pointer hover:text-white hover:bg-stone-700"
               size={"35"}
