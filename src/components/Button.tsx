@@ -62,7 +62,7 @@ export const Login: React.FC = () => {
 export const Register: React.FC = () => {
   return (
     <Link
-      to="/user/register"
+      to="/auth/register"
       className="flex items-center gap-1 bg-neutral-800 hover:bg-neutral-900
 text-white px-4 h-10 rounded-md transition duration-200 hover:scale-105 justify-center"
     >
