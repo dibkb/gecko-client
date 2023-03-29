@@ -10,7 +10,7 @@ const Errorpage: React.FC = () => {
         className="h-xl w-fit"
       />
       <p className="text-stone-800 text-3xl mb-10 text-center">
-        Oops... Looks like something went wrong
+        Oops... Looks like something went wrong.Try refreshing the page once.
       </p>
       <a
         href="https://dribbble.com/makers_co"
